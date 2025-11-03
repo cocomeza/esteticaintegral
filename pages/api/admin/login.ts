@@ -87,9 +87,28 @@ export default async function handler(
     console.log('✅ Password valid, creating session...')
     
     // 🔄 MEJORA #8: Crear sesión con access token y refresh token
+    // Para Pages Router API routes, necesitamos crear las cookies manualmente
     try {
-      const sessionCookies = await setAdminSession(email)
-      res.setHeader('Set-Cookie', sessionCookies) // Array de cookies
+      const { generateAdminToken, generateRefreshToken } = await import('../../../src/lib/admin-auth')
+      
+      const accessToken = await generateAdminToken(email, '1h')
+      const refreshToken = await generateRefreshToken(email)
+      
+      // Configurar cookies para Pages Router
+      const isProduction = process.env.NODE_ENV === 'production'
+      const cookieOptions = {
+        httpOnly: true,
+        secure: isProduction,
+        sameSite: 'strict' as const,
+        path: '/'
+      }
+      
+      // Set access token cookie (1 hora)
+      res.setHeader('Set-Cookie', [
+        `admin-session=${accessToken}; HttpOnly; ${isProduction ? 'Secure; ' : ''}SameSite=Strict; Path=/; Max-Age=${60 * 60}`,
+        `admin-refresh=${refreshToken}; HttpOnly; ${isProduction ? 'Secure; ' : ''}SameSite=Strict; Path=/; Max-Age=${7 * 24 * 60 * 60}`
+      ])
+      
       console.log('✅ Login successful')
       res.status(200).json({ success: true, user: { email: admin.email, role: admin.role } })
     } catch (sessionError: any) {

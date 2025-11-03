@@ -19,3 +19,52 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Mejoras de visibilidad para inputs y selects */
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+select,
+textarea {
+  color: #030712 !important; /* text-gray-950 */
+  font-weight: 500 !important;
+}
+
+/* Asegurar que el texto dentro de inputs sea visible */
+input::placeholder,
+textarea::placeholder {
+  color: #9ca3af !important; /* text-gray-400 */
+  font-weight: 400 !important;
+}
+
+/* Mejorar visibilidad de opciones en selects */
+select option {
+  color: #030712 !important; /* text-gray-950 */
+  background-color: #ffffff !important;
+  font-weight: 500 !important;
+}
+
+/* Asegurar que los selects muestren el texto seleccionado claramente */
+select {
+  color: #030712 !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Para inputs tipo date/time */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+/* Hover y focus más visibles */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #ec4899 !important; /* border-primary */
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1) !important;
+}

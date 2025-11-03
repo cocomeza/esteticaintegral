@@ -188,12 +188,6 @@ export default function Home() {
                   </svg>
                   <span className="font-medium">03407 - 494611</span>
                 </div>
-                <div className="flex items-center justify-center md:justify-start gap-2 text-sm text-gray-600">
-                  <svg className="w-4 h-4 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-              <span>Lun-Vie: 09:00-18:45</span>
-                </div>
               </div>
             </div>
 

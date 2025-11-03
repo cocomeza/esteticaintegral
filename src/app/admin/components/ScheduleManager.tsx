@@ -34,8 +34,8 @@ export default function ScheduleManager({ specialistId }: ScheduleManagerProps) 
     dayOfWeek: 1,
     startTime: '09:00',
     endTime: '18:45',
-    lunchStart: '13:00',
-    lunchEnd: '14:00'
+    lunchStart: '13:30',
+    lunchEnd: '14:30'
   })
   const [validation, setValidation] = useState<any>(null)
   const [isValidating, setIsValidating] = useState(false)
@@ -49,7 +49,7 @@ export default function ScheduleManager({ specialistId }: ScheduleManagerProps) 
     if (editingId && formData.startTime && formData.endTime) {
       validateScheduleChange()
     }
-  }, [editingId, formData.startTime, formData.endTime, formData.lunchStart, formData.lunchEnd])
+  }, [editingId, formData.startTime, formData.endTime, formData.lunchStart, formData.lunchEnd, specialistId])
 
   const validateScheduleChange = async () => {
     if (!editingId) return
@@ -202,8 +202,8 @@ export default function ScheduleManager({ specialistId }: ScheduleManagerProps) 
       dayOfWeek: 1,
       startTime: '09:00',
       endTime: '18:45',
-      lunchStart: '13:00',
-      lunchEnd: '14:00'
+      lunchStart: '13:30',
+      lunchEnd: '14:30'
     })
     setValidation(null)
   }
@@ -316,15 +316,41 @@ export default function ScheduleManager({ specialistId }: ScheduleManagerProps) 
                     </p>
                     <ul className="space-y-1 text-sm text-orange-800 bg-orange-100 rounded p-3">
                       {validation.conflicts.map((conflict: any, idx: number) => (
-                        <li key={idx} className="flex items-center justify-between py-1 border-b border-orange-200 last:border-0">
-                          <span className="font-medium">{conflict.patientName}</span>
-                          <span className="text-orange-700 ml-3 text-xs">
-                            {conflict.appointmentDate} {conflict.appointmentTime} - {conflict.serviceName}
-                            {conflict.conflictType === 'lunch_conflict' && ' (conflicto con almuerzo)'}
-                          </span>
+                        <li key={idx} className={`flex items-start justify-between py-2 border-b border-orange-200 last:border-0 ${
+                          conflict.conflictType === 'lunch_conflict' ? 'bg-orange-200 px-2 rounded' : ''
+                        }`}>
+                          <div className="flex-1">
+                            <span className="font-medium block">{conflict.patientName}</span>
+                            <span className="text-orange-700 text-xs block mt-1">
+                              📅 {conflict.appointmentDate} 🕐 {conflict.appointmentTime}
+                            </span>
+                            <span className="text-orange-600 text-xs">
+                              {conflict.serviceName}
+                            </span>
+                          </div>
+                          {conflict.conflictType === 'lunch_conflict' && (
+                            <span className="ml-3 px-2 py-1 bg-orange-500 text-white text-xs font-bold rounded whitespace-nowrap">
+                              ⚠️ CONFLICTO CON ALMUERZO
+                            </span>
+                          )}
+                          {conflict.conflictType === 'outside_hours' && (
+                            <span className="ml-3 px-2 py-1 bg-red-500 text-white text-xs font-bold rounded whitespace-nowrap">
+                              ⚠️ FUERA DE HORARIO
+                            </span>
+                          )}
                         </li>
                       ))}
                     </ul>
+                    {validation.conflicts.some((c: any) => c.conflictType === 'lunch_conflict') && (
+                      <div className="mt-3 p-3 bg-orange-200 border-l-4 border-orange-500 rounded">
+                        <p className="text-sm font-bold text-orange-900">
+                          🍽️ ATENCIÓN: Hay turnos que caen dentro del nuevo horario de almuerzo
+                        </p>
+                        <p className="text-xs text-orange-800 mt-1">
+                          Estos pacientes tienen citas programadas durante las horas que acabas de definir como horario de descanso.
+                        </p>
+                      </div>
+                    )}
                     <p className="mt-2 text-xs text-orange-700 font-medium">
                       💡 Debes contactar a estos pacientes antes de aplicar el cambio
                     </p>

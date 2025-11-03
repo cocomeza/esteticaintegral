@@ -711,6 +711,13 @@ export async function createPatientForAdmin(patientData: { name: string; email: 
 }
 
 export async function getAvailableTimesForAdmin(specialistId: string, date: string, serviceId?: string) {
+  // Verificar que no sea domingo (día 0)
+  const dayOfWeek = getDayOfWeek(date)
+  if (dayOfWeek === 0) {
+    // Domingo - no hay atención
+    return []
+  }
+
   // Primero verificar si la fecha está cerrada (vacaciones/feriados)
   const { data: closures } = await supabaseAdmin
     .from('closures')
@@ -735,7 +742,6 @@ export async function getAvailableTimesForAdmin(specialistId: string, date: stri
     .single()
 
   let schedule: any = null
-  const dayOfWeek = getDayOfWeek(date) // Calcular día de la semana para uso posterior
 
   if (exception) {
     // Usar la excepción si existe

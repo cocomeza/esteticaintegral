@@ -115,8 +115,8 @@ export const WORK_SCHEDULE = {
     start: '09:00',
     end: '18:45',
     lunchBreak: {
-      start: '13:00',
-      end: '14:00'
+      start: '13:30',
+      end: '14:30'
     }
   },
   // Sábados: Solo depilación

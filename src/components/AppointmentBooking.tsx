@@ -146,6 +146,14 @@ export default function AppointmentBooking({ serviceId, onBack }: AppointmentBoo
     const dayOfWeek = localDate.getDay()
     const dateString = formatDateForAPI(selectedDate)
     
+    // Verificar que no sea domingo (día 0)
+    if (dayOfWeek === 0) {
+      console.log('❌ No se atiende los domingos')
+      setAvailableTimes([])
+      setError('Los domingos no hay atención disponible')
+      return
+    }
+    
     console.log('🔍 Buscando horarios para:', { 
       selectedDate: selectedDate.toISOString(), 
       localDate: localDate.toISOString(), 
@@ -264,10 +272,16 @@ export default function AppointmentBooking({ serviceId, onBack }: AppointmentBoo
       }
       
       // Excluir horario de almuerzo
+      // Un turno se excluye si:
+      // 1. Empieza durante el almuerzo (ej: 13:30)
+      // 2. Termina durante el almuerzo (ej: 12:45 que termina a las 13:30)
+      // 3. Contiene completamente el almuerzo (ej: 12:00-15:00)
+      // 4. Empieza antes del almuerzo pero termina después del inicio (ej: 12:45 que termina a las 13:30)
       const isLunchTime = lunchStart && lunchEnd && 
-        ((currentTime >= lunchStart && currentTime < lunchEnd) ||
-         (proposedEnd > lunchStart && proposedEnd <= lunchEnd) ||
-         (currentTime <= lunchStart && proposedEnd >= lunchEnd))
+        ((currentTime >= lunchStart && currentTime < lunchEnd) ||  // Empieza durante almuerzo
+         (proposedEnd > lunchStart && proposedEnd <= lunchEnd) ||   // Termina durante almuerzo
+         (currentTime <= lunchStart && proposedEnd >= lunchEnd) ||  // Contiene completamente el almuerzo
+         (currentTime < lunchStart && proposedEnd > lunchStart))   // Empieza antes pero termina durante/comienza del almuerzo
       
       // 🔧 FIX Bug #3: Verificar que no haya overlap con intervalos ocupados
       let hasOverlap = false
@@ -546,15 +560,20 @@ export default function AppointmentBooking({ serviceId, onBack }: AppointmentBoo
                 inline
                 className="w-full"
                 calendarClassName="w-full border-0"
+                filterDate={(date: Date) => {
+                  // Excluir domingos (día 0)
+                  return date.getDay() !== 0
+                }}
                 dayClassName={(date) => {
                   const isPast = date < new Date()
                   const isSelected = selectedDate && isSameDay(date, selectedDate)
                   const isToday = isSameDay(date, new Date())
+                  const isSunday = date.getDay() === 0
                   
                   let classes = 'flex items-center justify-center w-8 h-8 text-sm rounded-lg transition-all duration-200'
                   
-                  if (isPast) {
-                    classes += ' text-gray-300 cursor-not-allowed'
+                  if (isPast || isSunday) {
+                    classes += ' text-gray-300 cursor-not-allowed opacity-50'
                   } else if (isSelected) {
                     classes += ' bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold shadow-lg'
                   } else if (isToday) {

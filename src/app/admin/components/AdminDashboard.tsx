@@ -465,9 +465,24 @@ export default function AdminDashboard({ adminUser }: AdminDashboardProps) {
         await fetchData()
         alert('✅ Cita actualizada exitosamente. El horario anterior quedó disponible para otros pacientes.')
         } else {
-          const error = await response.json()
-          console.error('❌ Error al actualizar:', error)
-          throw new Error(error.error || 'Error al actualizar la cita')
+          const errorData = await response.json()
+          console.error('❌ Error al actualizar:', errorData)
+          
+          // Mostrar mensaje de error más descriptivo
+          let errorMessage = errorData.error || 'Error al actualizar la cita'
+          
+          // Mensajes específicos según el tipo de error
+          if (errorMessage.includes('ya está ocupado')) {
+            errorMessage = '⚠️ El horario seleccionado ya está ocupado. Por favor elige otro horario.'
+          } else if (errorMessage.includes('Fecha cerrada')) {
+            errorMessage = '⚠️ No se pueden crear citas en esta fecha porque está cerrada.'
+          } else if (errorMessage.includes('no encontrada')) {
+            errorMessage = '⚠️ La cita no fue encontrada. Por favor recarga la página.'
+          } else if (errorMessage.includes('jsonb_each')) {
+            errorMessage = '⚠️ Error de base de datos. Por favor ejecuta el script fix-jsonb-each-error.sql en Supabase.'
+          }
+          
+          throw new Error(errorMessage)
         }
       } catch (err: any) {
         console.error('❌ Error en handleEditAppointment:', err)

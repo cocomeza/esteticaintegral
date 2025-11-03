@@ -132,10 +132,19 @@ async function handlePut(req: NextApiRequest, res: NextApiResponse) {
       status
     })
 
+    if (!appointment) {
+      return res.status(404).json({ error: 'No se pudo obtener la cita actualizada' })
+    }
+
     return res.status(200).json({ appointment })
   } catch (error: any) {
-    console.error('Error updating appointment:', error)
-    return res.status(500).json({ error: error.message || 'Error al actualizar la cita' })
+    console.error('❌ Error updating appointment:', error)
+    console.error('Error stack:', error.stack)
+    const errorMessage = error.message || 'Error al actualizar la cita'
+    return res.status(500).json({ 
+      error: errorMessage,
+      details: process.env.NODE_ENV === 'development' ? error.stack : undefined
+    })
   }
 }
 

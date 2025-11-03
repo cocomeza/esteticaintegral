@@ -493,7 +493,7 @@ export async function updateAppointmentForAdmin(appointmentId: string, updateDat
   if (hasChanged) {
     // 🔧 FIX Bug #5: Verificar si la nueva fecha está cerrada
     if (updateData.appointmentDate) {
-      const { data: closures } = await supabaseAdmin
+      const { data: closures, error: closureError } = await supabaseAdmin
         .from('closures')
         .select('*')
         .eq('specialist_id', finalSpecialistId)
@@ -501,13 +501,19 @@ export async function updateAppointmentForAdmin(appointmentId: string, updateDat
         .lte('start_date', finalDate)
         .gte('end_date', finalDate)
 
+      if (closureError) {
+        console.error('Error verificando cierres:', closureError)
+        // No bloquear por error de consulta, solo loguear
+      }
+
       if (closures && closures.length > 0) {
         const closure = closures[0]
         throw new Error(`No se pueden crear citas en esta fecha: ${closure.reason || 'Fecha cerrada'}`)
       }
     }
 
-    const { data: existingAppointment } = await supabaseAdmin
+    // Verificar disponibilidad del nuevo horario
+    const { data: existingAppointment, error: checkError } = await supabaseAdmin
       .from('appointments')
       .select('id')
       .eq('specialist_id', finalSpecialistId)
@@ -515,7 +521,12 @@ export async function updateAppointmentForAdmin(appointmentId: string, updateDat
       .eq('appointment_time', finalTime)
       .neq('status', 'cancelled')
       .neq('id', appointmentId)
-      .single()
+      .maybeSingle()
+
+    if (checkError) {
+      console.error('Error verificando disponibilidad:', checkError)
+      // Continuar aunque haya error, pero loguear
+    }
 
     if (existingAppointment) {
       throw new Error('El horario seleccionado ya está ocupado')
@@ -555,6 +566,47 @@ export async function updateAppointmentForAdmin(appointmentId: string, updateDat
   
   console.log('📝 Objeto de actualización:', updateObject)
 
+  // Verificar que hay algo que actualizar
+  if (Object.keys(updateObject).length === 0) {
+    console.log('⚠️ No hay cambios para actualizar')
+    // Devolver los datos actuales si no hay cambios
+    const { data: current } = await supabaseAdmin
+      .from('appointments')
+      .select(`
+        id,
+        appointment_date,
+        appointment_time,
+        status,
+        notes,
+        created_at,
+        specialist:specialists(
+          id,
+          name,
+          email,
+          phone,
+          title
+        ),
+        service:aesthetic_services(
+          id,
+          name,
+          description,
+          duration
+        ),
+        patient:patients(
+          id,
+          name,
+          email,
+          phone
+        )
+      `)
+      .eq('id', appointmentId)
+      .single()
+    
+    return current
+  }
+
+  console.log('💾 Ejecutando actualización con objeto:', updateObject)
+
   const { data, error } = await supabaseAdmin
     .from('appointments')
     .update(updateObject)
@@ -589,10 +641,16 @@ export async function updateAppointmentForAdmin(appointmentId: string, updateDat
     .single()
 
   if (error) {
-    console.error('Error updating appointment:', error)
-    throw error
+    console.error('❌ Error updating appointment:', error)
+    console.error('Error details:', JSON.stringify(error, null, 2))
+    throw new Error(error.message || 'Error al actualizar la cita en la base de datos')
   }
 
+  if (!data) {
+    throw new Error('No se pudo obtener la cita actualizada')
+  }
+
+  console.log('✅ Cita actualizada exitosamente:', data.id)
   return data
 }
 

@@ -1052,7 +1052,7 @@ export default function AdminDashboard({ adminUser }: AdminDashboardProps) {
                       placeholder="Buscar por paciente..."
                       value={search}
                       onChange={(e) => setSearch(e.target.value)}
-                      className="w-full pl-10 pr-4 py-2 bg-white border-2 border-gray-500 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none"
+                      className="w-full pl-10 pr-4 py-2 bg-white border-2 border-gray-500 rounded-lg text-gray-950 font-medium placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none shadow-sm"
                     />
                   </div>
                 </div>
@@ -1060,7 +1060,7 @@ export default function AdminDashboard({ adminUser }: AdminDashboardProps) {
                 <select
                   value={statusFilter}
                   onChange={(e) => setStatusFilter(e.target.value)}
-                  className="px-4 py-2 bg-white border-2 border-gray-500 rounded-lg text-gray-900 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none"
+                  className="px-4 py-2 bg-white border-2 border-gray-500 rounded-lg text-gray-950 font-medium focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none shadow-sm"
                 >
                   <option value="all">Todos los estados</option>
                   <option value="scheduled">Programadas</option>
@@ -1071,7 +1071,7 @@ export default function AdminDashboard({ adminUser }: AdminDashboardProps) {
                 <select
                   value={specialistFilter}
                   onChange={(e) => setSpecialistFilter(e.target.value)}
-                  className="px-4 py-2 bg-white border-2 border-gray-500 rounded-lg text-gray-900 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none"
+                  className="px-4 py-2 bg-white border-2 border-gray-500 rounded-lg text-gray-950 font-medium focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none shadow-sm"
                 >
                   <option value="">Todos los especialistas</option>
                   {specialists && specialists.map((specialist) => (

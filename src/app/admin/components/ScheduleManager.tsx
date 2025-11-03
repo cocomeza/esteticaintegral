@@ -34,8 +34,8 @@ export default function ScheduleManager({ specialistId }: ScheduleManagerProps) 
     dayOfWeek: 1,
     startTime: '09:00',
     endTime: '18:45',
-    lunchStart: '13:30',
-    lunchEnd: '14:30'
+    lunchStart: '12:45',
+    lunchEnd: '14:15'
   })
   const [validation, setValidation] = useState<any>(null)
   const [isValidating, setIsValidating] = useState(false)
@@ -202,8 +202,8 @@ export default function ScheduleManager({ specialistId }: ScheduleManagerProps) 
       dayOfWeek: 1,
       startTime: '09:00',
       endTime: '18:45',
-      lunchStart: '13:30',
-      lunchEnd: '14:30'
+      lunchStart: '12:45',
+      lunchEnd: '14:15'
     })
     setValidation(null)
   }

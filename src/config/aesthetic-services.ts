@@ -89,6 +89,22 @@ export const AESTHETIC_SERVICES: AestheticService[] = [
     duration: 45,
     category: 'estetico',
     isActive: true
+  },
+  {
+    id: 'masajes-descontracturantes',
+    name: 'Masajes Descontracturantes / Relajantes',
+    description: 'Técnica de masaje terapéutico que alivia tensiones musculares, contracturas y dolores. Combina técnicas de amasamiento profundo con movimientos relajantes para restaurar el equilibrio muscular y proporcionar bienestar general.',
+    duration: 45,
+    category: 'terapeutico',
+    isActive: true
+  },
+  {
+    id: 'ventosas',
+    name: 'Ventosas',
+    description: 'Técnica terapéutica milenaria que utiliza copas de succión para mejorar la circulación, aliviar dolores musculares y reducir inflamación. Efectiva para contracturas, dolores de espalda y problemas circulatorios.',
+    duration: 45,
+    category: 'terapeutico',
+    isActive: true
   }
 ]
 
@@ -115,8 +131,8 @@ export const WORK_SCHEDULE = {
     start: '09:00',
     end: '18:45',
     lunchBreak: {
-      start: '13:30',
-      end: '14:30'
+      start: '12:45',
+      end: '14:15'
     }
   },
   // Sábados: Solo depilación

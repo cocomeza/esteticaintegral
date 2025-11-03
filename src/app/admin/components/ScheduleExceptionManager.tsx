@@ -25,8 +25,8 @@ export default function ScheduleExceptionManager({ specialistId }: ScheduleExcep
     exceptionDate: '',
     startTime: '09:00',
     endTime: '18:45',
-    lunchStart: '13:30',
-    lunchEnd: '14:30',
+    lunchStart: '12:45',
+    lunchEnd: '14:15',
     reason: ''
   })
   const [validation, setValidation] = useState<any>(null)
@@ -147,8 +147,8 @@ export default function ScheduleExceptionManager({ specialistId }: ScheduleExcep
       exceptionDate: exception.exception_date,
       startTime: exception.start_time,
       endTime: exception.end_time,
-      lunchStart: exception.lunch_start || '13:30',
-      lunchEnd: exception.lunch_end || '14:30',
+      lunchStart: exception.lunch_start || '12:45',
+      lunchEnd: exception.lunch_end || '14:15',
       reason: exception.reason || ''
     })
   }
@@ -181,8 +181,8 @@ export default function ScheduleExceptionManager({ specialistId }: ScheduleExcep
       exceptionDate: '',
       startTime: '09:00',
       endTime: '18:45',
-      lunchStart: '13:30',
-      lunchEnd: '14:30',
+      lunchStart: '12:45',
+      lunchEnd: '14:15',
       reason: ''
     })
     setValidation(null)

@@ -275,8 +275,8 @@ export async function getSpecialistTimeConfig(specialistId: string): Promise<Tim
  */
 export function isLunchTime(
   appointmentTime: string,
-  lunchStart: string = "13:30",
-  lunchEnd: string = "14:30"
+  lunchStart: string = "12:45",
+  lunchEnd: string = "14:15"
 ): boolean {
   return appointmentTime >= lunchStart && appointmentTime < lunchEnd
 }

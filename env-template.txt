@@ -1,0 +1,74 @@
+# Variables de entorno para Centro de Estética Integral
+# IMPORTANTE: Crear un archivo llamado .env.local con este contenido y reemplazar los valores
+
+# ========================================
+# CONFIGURACIÓN BÁSICA (REQUERIDO)
+# ========================================
+
+# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL=https://tu-proyecto.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_clave_anonima_de_supabase
+SUPABASE_SERVICE_ROLE_KEY=tu_clave_service_role_de_supabase
+
+# Admin Authentication
+JWT_SECRET=tu_jwt_secret_minimo_32_caracteres_muy_seguro
+
+# ========================================
+# MEJORAS DE SEGURIDAD (RECOMENDADO)
+# ========================================
+
+# Google reCAPTCHA v3 - MEJORA #2
+# Obtener en: https://www.google.com/recaptcha/admin
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY=tu_recaptcha_site_key
+RECAPTCHA_SECRET_KEY=tu_recaptcha_secret_key
+
+# ========================================
+# NOTIFICACIONES POR EMAIL (OPCIONAL)
+# ========================================
+
+# SMTP Configuration - MEJORA #3
+# Para Gmail: Generar app password en Google Account > Security > App Passwords
+# Instrucciones: https://support.google.com/accounts/answer/185833
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=tu-email@gmail.com
+SMTP_PASS=tu_gmail_app_password
+SMTP_FROM_NAME=Estética Integral
+SMTP_FROM_EMAIL=noreply@esteticaintegral.com.ar
+
+# ========================================
+# CRON JOBS (OPCIONAL)
+# ========================================
+
+# Cron Secret - MEJORA #9
+# Para recordatorios automáticos 24h antes
+CRON_SECRET=tu_cron_secret_key_muy_seguro
+
+# ========================================
+# INSTRUCCIONES PASO A PASO:
+# ========================================
+# 
+# 1. Crear el archivo .env.local:
+#    - Copiar todo el contenido de este archivo
+#    - Crear un nuevo archivo llamado .env.local en la raíz del proyecto
+#    - Pegar el contenido
+#
+# 2. Configurar Supabase:
+#    - Ir a https://supabase.com
+#    - Crear un nuevo proyecto
+#    - Ir a Settings > API
+#    - Copiar "Project URL" → pegar en NEXT_PUBLIC_SUPABASE_URL
+#    - Copiar "anon public" key → pegar en NEXT_PUBLIC_SUPABASE_ANON_KEY
+#
+# 3. Ejecutar el script SQL:
+#    - Ir a SQL Editor en Supabase
+#    - Ejecutar el contenido de database/supabase-schema.sql
+#
+# 4. Verificar configuración:
+#    - Ejecutar: npm run dev
+#    - El sitio debería funcionar sin el mensaje "Modo de demostración"
+#
+# IMPORTANTE:
+# - El archivo .env.local NO se sube a GitHub (está en .gitignore)
+# - Solo necesitas NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_ANON_KEY
+# - Las otras variables son opcionales

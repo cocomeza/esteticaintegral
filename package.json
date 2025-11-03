@@ -1,0 +1,87 @@
+{
+  "name": "estetica-integral-lorena",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sistema de turnos para Centro de Estética Integral - Lorena Esquivel",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:manual": "node scripts/manual-tests.js",
+    "test:bugs": "node scripts/bug-detector.js"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.2.8",
+    "@hookform/resolvers": "^5.2.2",
+    "@supabase/auth-ui-react": "^0.4.7",
+    "@supabase/auth-ui-shared": "^0.1.8",
+    "@supabase/supabase-js": "^2.57.4",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/jspdf": "^1.3.3",
+    "@types/nodemailer": "^7.0.1",
+    "@types/react-datepicker": "^6.2.0",
+    "autoprefixer": "^10.4.21",
+    "bcryptjs": "^3.0.2",
+    "canvg": "^4.0.3",
+    "cookie": "^1.0.2",
+    "date-fns": "^4.1.0",
+    "dompurify": "^3.0.8",
+    "dotenv": "^17.2.3",
+    "express-rate-limit": "^8.1.0",
+    "html2canvas": "^1.4.1",
+    "jose": "^6.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "jspdf": "^3.0.3",
+    "lucide-react": "^0.544.0",
+    "next": "15.5.3",
+    "nodemailer": "^7.0.6",
+    "react": "19.1.0",
+    "react-datepicker": "^8.7.0",
+    "react-dom": "19.1.0",
+    "react-google-recaptcha-v3": "^1.11.0",
+    "react-hook-form": "^7.62.0",
+    "zod": "^4.1.9"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/dompurify": "^3.0.5",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.3",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest.setup.js"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.(ts|tsx|js)",
+      "**/*.(test|spec).(ts|tsx|js)"
+    ],
+    "moduleNameMapping": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "pages/**/*.{ts,tsx}",
+      "!**/*.d.ts",
+      "!**/node_modules/**"
+    ]
+  }
+}

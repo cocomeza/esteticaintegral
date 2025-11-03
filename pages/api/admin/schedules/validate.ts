@@ -32,8 +32,8 @@ export default async function handler(
         appointment_time,
         duration,
         status,
-        patients!inner(name, email),
-        aesthetic_services!inner(name)
+        patient:patients(name, email),
+        service:aesthetic_services(name)
       `)
       .eq('specialist_id', specialistId)
       .eq('status', 'scheduled')
@@ -89,13 +89,15 @@ export default async function handler(
 
       // Verificar si el turno queda fuera del nuevo horario
       if (aptStartMinutes < newStartMinutes || aptEndMinutes > newEndMinutes) {
+        const patient = Array.isArray(appointment.patient) ? appointment.patient[0] : appointment.patient
+        const service = Array.isArray(appointment.service) ? appointment.service[0] : appointment.service
         conflicts.push({
           appointmentId: appointment.id,
           appointmentDate: appointment.appointment_date,
           appointmentTime: appointment.appointment_time,
-          patientName: appointment.patients?.name || 'Desconocido',
-          patientEmail: appointment.patients?.email || '',
-          serviceName: appointment.aesthetic_services?.name || 'Desconocido',
+          patientName: patient?.name || 'Desconocido',
+          patientEmail: patient?.email || '',
+          serviceName: service?.name || 'Desconocido',
           conflictType: 'outside_hours'
         })
       }
@@ -112,13 +114,15 @@ export default async function handler(
           (aptEndMinutes > lunchStartMinutes && aptEndMinutes <= lunchEndMinutes) ||
           (aptStartMinutes <= lunchStartMinutes && aptEndMinutes >= lunchEndMinutes)
         ) {
+          const patient = Array.isArray(appointment.patient) ? appointment.patient[0] : appointment.patient
+          const service = Array.isArray(appointment.service) ? appointment.service[0] : appointment.service
           conflicts.push({
             appointmentId: appointment.id,
             appointmentDate: appointment.appointment_date,
             appointmentTime: appointment.appointment_time,
-            patientName: appointment.patients?.name || 'Desconocido',
-            patientEmail: appointment.patients?.email || '',
-            serviceName: appointment.aesthetic_services?.name || 'Desconocido',
+            patientName: patient?.name || 'Desconocido',
+            patientEmail: patient?.email || '',
+            serviceName: service?.name || 'Desconocido',
             conflictType: 'lunch_conflict'
           })
         }

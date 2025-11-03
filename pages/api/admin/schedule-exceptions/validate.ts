@@ -63,25 +63,45 @@ export default async function handler(
     const conflicts: any[] = []
 
     // Verificar cada turno
+    console.log(`🔍 Validando ${appointments.length} turno(s) contra nuevo horario: ${newStartTime} - ${newEndTime}`)
+    
     for (const appointment of appointments) {
       const [aptHour, aptMin] = appointment.appointment_time.split(':').map(Number)
       const aptStartMinutes = aptHour * 60 + aptMin
       const aptEndMinutes = aptStartMinutes + (appointment.duration || 45)
 
+      console.log(`  - Turno: ${appointment.appointment_time} (${aptStartMinutes}-${aptEndMinutes} min) vs Nuevo: (${newStartMinutes}-${newEndMinutes} min)`)
+
       // Verificar si el turno queda fuera del nuevo horario
-      if (aptStartMinutes < newStartMinutes || aptEndMinutes > newEndMinutes) {
+      const isBeforeStart = aptStartMinutes < newStartMinutes
+      const isAfterEnd = aptEndMinutes > newEndMinutes
+      
+      if (isBeforeStart || isAfterEnd) {
         const patient = Array.isArray(appointment.patient) ? appointment.patient[0] : appointment.patient
         const service = Array.isArray(appointment.service) ? appointment.service[0] : appointment.service
+        
+        const conflictReason = isBeforeStart 
+          ? `Inicia antes del nuevo horario (${appointment.appointment_time} < ${newStartTime})`
+          : `Termina después del nuevo horario (${appointment.appointment_time} + ${appointment.duration}min > ${newEndTime})`
+        
         conflicts.push({
           appointmentId: appointment.id,
           appointmentTime: appointment.appointment_time,
+          duration: appointment.duration || 45,
           patientName: patient?.name || 'Desconocido',
           patientEmail: patient?.email || '',
           serviceName: service?.name || 'Desconocido',
-          conflictType: 'outside_hours'
+          conflictType: 'outside_hours',
+          reason: conflictReason
         })
+        
+        console.log(`    ⚠️  CONFLICTO: ${patient?.name || 'Desconocido'} - ${appointment.appointment_time} (${conflictReason})`)
+      } else {
+        console.log(`    ✅ OK: Turno dentro del nuevo horario`)
       }
     }
+    
+    console.log(`📊 Total de conflictos encontrados: ${conflicts.length}`)
 
     const hasConflicts = conflicts.length > 0
 

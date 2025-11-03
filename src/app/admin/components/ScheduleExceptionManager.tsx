@@ -291,35 +291,50 @@ export default function ScheduleExceptionManager({ specialistId }: ScheduleExcep
         )}
 
         {validation && !isValidating && formData.exceptionDate && (
-          <div className={`mt-4 p-3 rounded-lg ${
+          <div className={`mt-4 p-4 rounded-lg border-2 ${
             validation.hasConflicts 
-              ? 'bg-orange-50 border border-orange-200' 
-              : 'bg-green-50 border border-green-200'
+              ? 'bg-orange-50 border-orange-400 shadow-md' 
+              : 'bg-green-50 border-green-300'
           }`}>
-            <div className="flex items-start gap-2">
-              <AlertTriangle className={`h-5 w-5 ${
+            <div className="flex items-start gap-3">
+              <AlertTriangle className={`h-6 w-6 flex-shrink-0 mt-0.5 ${
                 validation.hasConflicts ? 'text-orange-600' : 'text-green-600'
               }`} />
               <div className="flex-1">
-                <p className={`text-sm font-medium ${
-                  validation.hasConflicts ? 'text-orange-800' : 'text-green-800'
+                <p className={`text-base font-bold mb-2 ${
+                  validation.hasConflicts ? 'text-orange-900' : 'text-green-900'
                 }`}>
                   {validation.hasConflicts 
-                    ? `⚠️ Este cambio afectará ${validation.affectedAppointmentsCount} turno(s) existente(s)`
+                    ? `⚠️ ADVERTENCIA: Este cambio afectará ${validation.affectedAppointmentsCount} turno(s) existente(s)`
                     : '✅ No hay conflictos con turnos existentes'
                   }
                 </p>
                 {validation.hasConflicts && validation.conflicts && validation.conflicts.length > 0 && (
-                  <ul className="mt-2 text-xs text-orange-700 list-disc list-inside">
-                    {validation.conflicts.slice(0, 3).map((conflict: any, idx: number) => (
-                      <li key={idx}>
-                        {conflict.patientName} - {conflict.appointmentTime} ({conflict.serviceName})
-                      </li>
-                    ))}
-                    {validation.conflicts.length > 3 && (
-                      <li>... y {validation.conflicts.length - 3} más</li>
-                    )}
-                  </ul>
+                  <div className="mt-3">
+                    <p className="text-sm font-semibold text-orange-900 mb-2">
+                      Turnos que se verán afectados:
+                    </p>
+                    <ul className="space-y-1 text-sm text-orange-800 bg-orange-100 rounded p-3">
+                      {validation.conflicts.map((conflict: any, idx: number) => (
+                        <li key={idx} className="flex items-center justify-between py-1 border-b border-orange-200 last:border-0">
+                          <span className="font-medium">{conflict.patientName}</span>
+                          <span className="text-orange-700 ml-3">
+                            {conflict.appointmentTime} - {conflict.serviceName}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="mt-2 text-xs text-orange-700 font-medium">
+                      💡 Debes contactar a estos pacientes antes de aplicar el cambio
+                    </p>
+                  </div>
+                )}
+                {validation.recommendation && (
+                  <p className={`mt-2 text-sm ${
+                    validation.hasConflicts ? 'text-orange-700' : 'text-green-700'
+                  }`}>
+                    {validation.recommendation}
+                  </p>
                 )}
               </div>
             </div>

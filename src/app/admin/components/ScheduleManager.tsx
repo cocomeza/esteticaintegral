@@ -235,7 +235,7 @@ export default function ScheduleManager({ specialistId }: ScheduleManagerProps) 
               <select
                 value={formData.dayOfWeek}
                 onChange={(e) => setFormData({ ...formData, dayOfWeek: parseInt(e.target.value) })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 bg-white border-2 border-gray-500 rounded-lg text-gray-950 font-medium placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none shadow-sm"
               >
                 {DAYS_OF_WEEK.map((day) => (
                   <option key={day.value} value={day.value}>{day.label}</option>
@@ -250,7 +250,7 @@ export default function ScheduleManager({ specialistId }: ScheduleManagerProps) 
               type="time"
               value={formData.startTime}
               onChange={(e) => setFormData({ ...formData, startTime: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 bg-white border-2 border-gray-500 rounded-lg text-gray-950 font-medium placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none shadow-sm"
             />
           </div>
           
@@ -260,7 +260,7 @@ export default function ScheduleManager({ specialistId }: ScheduleManagerProps) 
               type="time"
               value={formData.endTime}
               onChange={(e) => setFormData({ ...formData, endTime: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 bg-white border-2 border-gray-500 rounded-lg text-gray-950 font-medium placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none shadow-sm"
             />
           </div>
           
@@ -270,7 +270,7 @@ export default function ScheduleManager({ specialistId }: ScheduleManagerProps) 
               type="time"
               value={formData.lunchStart}
               onChange={(e) => setFormData({ ...formData, lunchStart: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 bg-white border-2 border-gray-500 rounded-lg text-gray-950 font-medium placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none shadow-sm"
             />
           </div>
           
@@ -280,7 +280,7 @@ export default function ScheduleManager({ specialistId }: ScheduleManagerProps) 
               type="time"
               value={formData.lunchEnd}
               onChange={(e) => setFormData({ ...formData, lunchEnd: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 bg-white border-2 border-gray-500 rounded-lg text-gray-950 font-medium placeholder-gray-400 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none shadow-sm"
             />
           </div>
         </div>
@@ -291,35 +291,51 @@ export default function ScheduleManager({ specialistId }: ScheduleManagerProps) 
         )}
 
         {validation && !isValidating && editingId && (
-          <div className={`mt-4 p-3 rounded-lg ${
+          <div className={`mt-4 p-4 rounded-lg border-2 ${
             validation.hasConflicts 
-              ? 'bg-orange-50 border border-orange-200' 
-              : 'bg-green-50 border border-green-200'
+              ? 'bg-orange-50 border-orange-400 shadow-md' 
+              : 'bg-green-50 border-green-300'
           }`}>
-            <div className="flex items-start gap-2">
-              <AlertTriangle className={`h-5 w-5 ${
+            <div className="flex items-start gap-3">
+              <AlertTriangle className={`h-6 w-6 flex-shrink-0 mt-0.5 ${
                 validation.hasConflicts ? 'text-orange-600' : 'text-green-600'
               }`} />
               <div className="flex-1">
-                <p className={`text-sm font-medium ${
-                  validation.hasConflicts ? 'text-orange-800' : 'text-green-800'
+                <p className={`text-base font-bold mb-2 ${
+                  validation.hasConflicts ? 'text-orange-900' : 'text-green-900'
                 }`}>
                   {validation.hasConflicts 
-                    ? `⚠️ Este cambio afectará ${validation.affectedAppointmentsCount} turno(s) futuro(s) para ${getDayLabel(formData.dayOfWeek)}`
+                    ? `⚠️ ADVERTENCIA: Este cambio afectará ${validation.affectedAppointmentsCount} turno(s) futuro(s) para ${getDayLabel(formData.dayOfWeek)}`
                     : `✅ No hay conflictos con turnos futuros para ${getDayLabel(formData.dayOfWeek)}`
                   }
                 </p>
                 {validation.hasConflicts && validation.conflicts && validation.conflicts.length > 0 && (
-                  <ul className="mt-2 text-xs text-orange-700 list-disc list-inside">
-                    {validation.conflicts.slice(0, 3).map((conflict: any, idx: number) => (
-                      <li key={idx}>
-                        {conflict.patientName} - {conflict.appointmentDate} {conflict.appointmentTime} ({conflict.serviceName})
-                      </li>
-                    ))}
-                    {validation.conflicts.length > 3 && (
-                      <li>... y {validation.conflicts.length - 3} más</li>
-                    )}
-                  </ul>
+                  <div className="mt-3">
+                    <p className="text-sm font-semibold text-orange-900 mb-2">
+                      Turnos que se verán afectados:
+                    </p>
+                    <ul className="space-y-1 text-sm text-orange-800 bg-orange-100 rounded p-3">
+                      {validation.conflicts.map((conflict: any, idx: number) => (
+                        <li key={idx} className="flex items-center justify-between py-1 border-b border-orange-200 last:border-0">
+                          <span className="font-medium">{conflict.patientName}</span>
+                          <span className="text-orange-700 ml-3 text-xs">
+                            {conflict.appointmentDate} {conflict.appointmentTime} - {conflict.serviceName}
+                            {conflict.conflictType === 'lunch_conflict' && ' (conflicto con almuerzo)'}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="mt-2 text-xs text-orange-700 font-medium">
+                      💡 Debes contactar a estos pacientes antes de aplicar el cambio
+                    </p>
+                  </div>
+                )}
+                {validation.recommendation && (
+                  <p className={`mt-2 text-sm ${
+                    validation.hasConflicts ? 'text-orange-700' : 'text-green-700'
+                  }`}>
+                    {validation.recommendation}
+                  </p>
                 )}
               </div>
             </div>

@@ -82,24 +82,38 @@ export default async function handler(
     const conflicts: any[] = []
 
     // Verificar cada turno
+    console.log(`🔍 Validando ${dayAppointments.length} turno(s) para ${getDayLabel(dayOfWeek)} contra nuevo horario: ${newStartTime} - ${newEndTime}`)
+    
+    // Evitar duplicados usando Set
+    const conflictIds = new Set<string>()
+    
     for (const appointment of dayAppointments) {
       const [aptHour, aptMin] = appointment.appointment_time.split(':').map(Number)
       const aptStartMinutes = aptHour * 60 + aptMin
       const aptEndMinutes = aptStartMinutes + (appointment.duration || 45)
 
+      console.log(`  - Turno: ${appointment.appointment_date} ${appointment.appointment_time} (${aptStartMinutes}-${aptEndMinutes} min) vs Nuevo: (${newStartMinutes}-${newEndMinutes} min)`)
+
       // Verificar si el turno queda fuera del nuevo horario
-      if (aptStartMinutes < newStartMinutes || aptEndMinutes > newEndMinutes) {
-        const patient = Array.isArray(appointment.patient) ? appointment.patient[0] : appointment.patient
-        const service = Array.isArray(appointment.service) ? appointment.service[0] : appointment.service
-        conflicts.push({
-          appointmentId: appointment.id,
-          appointmentDate: appointment.appointment_date,
-          appointmentTime: appointment.appointment_time,
-          patientName: patient?.name || 'Desconocido',
-          patientEmail: patient?.email || '',
-          serviceName: service?.name || 'Desconocido',
-          conflictType: 'outside_hours'
-        })
+      const isBeforeStart = aptStartMinutes < newStartMinutes
+      const isAfterEnd = aptEndMinutes > newEndMinutes
+      
+      if (isBeforeStart || isAfterEnd) {
+        if (!conflictIds.has(appointment.id)) {
+          conflictIds.add(appointment.id)
+          const patient = Array.isArray(appointment.patient) ? appointment.patient[0] : appointment.patient
+          const service = Array.isArray(appointment.service) ? appointment.service[0] : appointment.service
+          conflicts.push({
+            appointmentId: appointment.id,
+            appointmentDate: appointment.appointment_date,
+            appointmentTime: appointment.appointment_time,
+            patientName: patient?.name || 'Desconocido',
+            patientEmail: patient?.email || '',
+            serviceName: service?.name || 'Desconocido',
+            conflictType: 'outside_hours'
+          })
+          console.log(`    ⚠️  CONFLICTO (fuera de horario): ${patient?.name || 'Desconocido'} - ${appointment.appointment_time}`)
+        }
       }
 
       // Verificar conflicto con horario de almuerzo
@@ -109,11 +123,14 @@ export default async function handler(
         const lunchStartMinutes = lunchStartHour * 60 + lunchStartMin
         const lunchEndMinutes = lunchEndHour * 60 + lunchEndMin
 
-        if (
+        const conflictsWithLunch = (
           (aptStartMinutes >= lunchStartMinutes && aptStartMinutes < lunchEndMinutes) ||
           (aptEndMinutes > lunchStartMinutes && aptEndMinutes <= lunchEndMinutes) ||
           (aptStartMinutes <= lunchStartMinutes && aptEndMinutes >= lunchEndMinutes)
-        ) {
+        )
+
+        if (conflictsWithLunch && !conflictIds.has(appointment.id)) {
+          conflictIds.add(appointment.id)
           const patient = Array.isArray(appointment.patient) ? appointment.patient[0] : appointment.patient
           const service = Array.isArray(appointment.service) ? appointment.service[0] : appointment.service
           conflicts.push({
@@ -125,8 +142,21 @@ export default async function handler(
             serviceName: service?.name || 'Desconocido',
             conflictType: 'lunch_conflict'
           })
+          console.log(`    ⚠️  CONFLICTO (con almuerzo): ${patient?.name || 'Desconocido'} - ${appointment.appointment_time}`)
         }
       }
+      
+      if (!conflictIds.has(appointment.id)) {
+        console.log(`    ✅ OK: Turno dentro del nuevo horario`)
+      }
+    }
+    
+    console.log(`📊 Total de conflictos encontrados: ${conflicts.length}`)
+    
+    // Helper para obtener nombre del día
+    function getDayLabel(dayOfWeek: number): string {
+      const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
+      return days[dayOfWeek] || 'Desconocido'
     }
 
     const hasConflicts = conflicts.length > 0

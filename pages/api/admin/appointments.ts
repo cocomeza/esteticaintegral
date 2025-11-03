@@ -95,11 +95,38 @@ async function handlePut(req: NextApiRequest, res: NextApiResponse) {
       return res.status(400).json({ error: 'Se requiere appointmentId' })
     }
 
+    // Normalizar fecha si viene del frontend
+    let normalizedDate = appointmentDate
+    if (appointmentDate && typeof appointmentDate === 'string') {
+      // Asegurar formato YYYY-MM-DD
+      const dateMatch = appointmentDate.match(/^(\d{4})-(\d{2})-(\d{2})/)
+      if (dateMatch) {
+        normalizedDate = appointmentDate
+      } else {
+        // Intentar convertir si viene en otro formato
+        const date = new Date(appointmentDate)
+        if (!isNaN(date.getTime())) {
+          const year = date.getFullYear()
+          const month = String(date.getMonth() + 1).padStart(2, '0')
+          const day = String(date.getDate()).padStart(2, '0')
+          normalizedDate = `${year}-${month}-${day}`
+        }
+      }
+    }
+
+    console.log('📝 Actualizando cita:', {
+      appointmentId,
+      appointmentDate: normalizedDate,
+      appointmentTime,
+      specialistId,
+      serviceId
+    })
+
     const appointment = await updateAppointmentForAdmin(appointmentId, {
       specialistId,
       serviceId,
       patientId,
-      appointmentDate,
+      appointmentDate: normalizedDate,
       appointmentTime,
       notes,
       status

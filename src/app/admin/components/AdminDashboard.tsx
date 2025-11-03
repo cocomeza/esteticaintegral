@@ -407,27 +407,56 @@ export default function AdminDashboard({ adminUser }: AdminDashboardProps) {
       return
     }
 
-    setFormLoading(true)
-    setHasUnsavedChanges(false) // 🔄 Limpiar flag al guardar
-    try {
-      // Usar el ID de Lorena Esquivel que ya tenemos
-      if (!specialistId) {
-        throw new Error('No se encontró especialista activo')
-      }
+      setFormLoading(true)
+      setHasUnsavedChanges(false) // 🔄 Limpiar flag al guardar
+      try {
+        // Usar el ID de Lorena Esquivel que ya tenemos
+        if (!specialistId) {
+          throw new Error('No se encontró especialista activo')
+        }
 
-      const response = await fetch('/api/admin/appointments', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+        // Normalizar fecha para asegurar formato YYYY-MM-DD
+        const normalizeDate = (dateStr: string) => {
+          if (!dateStr) return dateStr
+          // Si ya está en formato YYYY-MM-DD, devolverlo
+          if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr.trim())) {
+            return dateStr.trim()
+          }
+          // Intentar parsear y formatear
+          const date = new Date(dateStr)
+          if (isNaN(date.getTime())) {
+            console.warn('⚠️ Fecha inválida:', dateStr)
+            return dateStr
+          }
+          const year = date.getFullYear()
+          const month = String(date.getMonth() + 1).padStart(2, '0')
+          const day = String(date.getDate()).padStart(2, '0')
+          return `${year}-${month}-${day}`
+        }
+
+        const normalizedDate = normalizeDate(appointmentForm.appointmentDate)
+        
+        console.log('✏️ Editando cita:', {
           appointmentId: editingAppointment.id,
-          specialistId: specialistId,
-          serviceId: appointmentForm.serviceId,
-          patientId: editingAppointment.patient.id, // Usar el paciente existente
-          appointmentDate: appointmentForm.appointmentDate,
-          appointmentTime: appointmentForm.appointmentTime,
-          notes: appointmentForm.notes
+          fechaOriginal: appointmentForm.appointmentDate,
+          fechaNormalizada: normalizedDate,
+          hora: appointmentForm.appointmentTime,
+          servicio: appointmentForm.serviceId
         })
-      })
+
+        const response = await fetch('/api/admin/appointments', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            appointmentId: editingAppointment.id,
+            specialistId: specialistId,
+            serviceId: appointmentForm.serviceId,
+            patientId: editingAppointment.patient.id, // Usar el paciente existente
+            appointmentDate: normalizedDate,
+            appointmentTime: appointmentForm.appointmentTime,
+            notes: appointmentForm.notes
+          })
+        })
 
       if (response.ok) {
         setShowEditModal(false)
@@ -435,15 +464,17 @@ export default function AdminDashboard({ adminUser }: AdminDashboardProps) {
         resetForm()
         await fetchData()
         alert('✅ Cita actualizada exitosamente. El horario anterior quedó disponible para otros pacientes.')
-      } else {
-        const error = await response.json()
-        throw new Error(error.error)
+        } else {
+          const error = await response.json()
+          console.error('❌ Error al actualizar:', error)
+          throw new Error(error.error || 'Error al actualizar la cita')
+        }
+      } catch (err: any) {
+        console.error('❌ Error en handleEditAppointment:', err)
+        alert(err.message || 'Error al actualizar la cita')
+      } finally {
+        setFormLoading(false)
       }
-    } catch (err: any) {
-      alert(err.message || 'Error al actualizar la cita')
-    } finally {
-      setFormLoading(false)
-    }
   }
 
   const handleDeleteAppointment = async () => {

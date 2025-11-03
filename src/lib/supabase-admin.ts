@@ -471,13 +471,23 @@ export async function updateAppointmentForAdmin(appointmentId: string, updateDat
 
   // Determinar los valores finales (actuales o actualizados)
   const finalSpecialistId = updateData.specialistId || currentAppointment.specialist_id
-  const finalDate = updateData.appointmentDate || currentAppointment.appointment_date
+  
+  // Normalizar fechas para comparación (quitar espacios, asegurar formato YYYY-MM-DD)
+  const normalizeDate = (dateStr: string | undefined): string | undefined => {
+    if (!dateStr) return undefined
+    return dateStr.trim().split('T')[0] // Tomar solo la parte de fecha si viene con hora
+  }
+  
+  const currentDateNormalized = normalizeDate(currentAppointment.appointment_date)
+  const updateDateNormalized = normalizeDate(updateData.appointmentDate)
+  const finalDate = updateDateNormalized || currentDateNormalized || currentAppointment.appointment_date
+  
   const finalTime = updateData.appointmentTime || currentAppointment.appointment_time
 
   // Si cambió la fecha, hora o especialista, verificar que el nuevo horario esté disponible
   const hasChanged = 
     updateData.specialistId !== undefined && updateData.specialistId !== currentAppointment.specialist_id ||
-    updateData.appointmentDate !== undefined && updateData.appointmentDate !== currentAppointment.appointment_date ||
+    (updateData.appointmentDate !== undefined && updateDateNormalized !== currentDateNormalized) ||
     updateData.appointmentTime !== undefined && updateData.appointmentTime !== currentAppointment.appointment_time
 
   if (hasChanged) {
@@ -529,10 +539,21 @@ export async function updateAppointmentForAdmin(appointmentId: string, updateDat
     }
   }
   if (updateData.patientId) updateObject.patient_id = updateData.patientId
-  if (updateData.appointmentDate) updateObject.appointment_date = updateData.appointmentDate
+  if (updateData.appointmentDate) {
+    // Asegurar formato YYYY-MM-DD
+    const normalizedDate = normalizeDate(updateData.appointmentDate) || updateData.appointmentDate
+    updateObject.appointment_date = normalizedDate
+    console.log('📅 Actualizando fecha de cita:', {
+      original: updateData.appointmentDate,
+      normalized: normalizedDate,
+      current: currentAppointment.appointment_date
+    })
+  }
   if (updateData.appointmentTime) updateObject.appointment_time = updateData.appointmentTime
   if (updateData.status) updateObject.status = updateData.status
   if (updateData.notes !== undefined) updateObject.notes = updateData.notes
+  
+  console.log('📝 Objeto de actualización:', updateObject)
 
   const { data, error } = await supabaseAdmin
     .from('appointments')

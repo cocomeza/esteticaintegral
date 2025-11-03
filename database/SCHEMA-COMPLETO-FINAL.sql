@@ -337,10 +337,10 @@ BEGIN
       'new', row_to_json(NEW),
       'changed_fields', (
         SELECT jsonb_object_agg(key, value)
-        FROM jsonb_each(row_to_json(NEW))
+        FROM jsonb_each(row_to_json(NEW)::jsonb)
         WHERE key IN (
           SELECT key
-          FROM jsonb_each(row_to_json(OLD))
+          FROM jsonb_each(row_to_json(OLD)::jsonb)
           WHERE value IS DISTINCT FROM (row_to_json(NEW) ->> key)::jsonb
         )
       )

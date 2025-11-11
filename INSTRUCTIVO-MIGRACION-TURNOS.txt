@@ -1,0 +1,541 @@
+================================================================================
+INSTRUCTIVO DE MIGRACIÓN DE TURNOS
+ESTÉTICA INTEGRAL - LORENA ESQUIVEL
+================================================================================
+
+Este instructivo te guía paso a paso para pasar todos tus turnos del cuaderno
+a la plataforma web. Una vez que termines, usarás solo la plataforma para
+todos los turnos nuevos.
+
+================================================================================
+PASO 1: PREPARACIÓN ANTES DE EMPEZAR
+================================================================================
+
+ANTES DE COMENZAR, NECESITAS:
+-----------------------------
+1. Tu cuaderno o cuadernillo con los turnos anotados
+2. Una computadora, tablet o celular con internet
+3. Tener a mano la información de cada turno:
+   - Nombre del cliente
+   - Teléfono del cliente (si lo tienes)
+   - Email del cliente (si lo tienes)
+   - Fecha del turno
+   - Hora del turno
+   - Servicio o tratamiento
+   - Cualquier nota especial (si la anotaste)
+
+ORGANIZACIÓN RECOMENDADA:
+-------------------------
+Te recomiendo trabajar de esta manera:
+1. Empieza con los turnos MÁS CERCANOS (los de esta semana y el mes actual)
+2. Luego sigue con los turnos futuros (próximos meses)
+3. Por último, si quieres, puedes cargar los turnos ya completados del pasado
+   (opcional, solo para tener historial)
+
+TIEMPO ESTIMADO:
+----------------
+- Cada turno toma aproximadamente 1-2 minutos en cargarse
+- Si tienes 50 turnos, calcula aproximadamente 1-2 horas
+- Puedes hacerlo en varias sesiones, no es necesario hacerlo todo de una vez
+
+================================================================================
+PASO 2: ACCEDER AL PANEL DE ADMINISTRACIÓN
+================================================================================
+
+PRIMERA VEZ QUE ACCEDES:
+------------------------
+1. Abre tu navegador (Chrome, Firefox, Safari, Edge, etc.)
+2. Ve a esta dirección:
+   https://estetica-integral.vercel.app/admin/login
+
+3. Ingresa tus credenciales:
+   Email: lore.estetica76@gmail.com
+   Contraseña: (la contraseña que te dieron)
+
+4. Click en "Iniciar Sesión"
+
+5. Si todo está bien, verás el panel de administración con varias pestañas:
+   - Turnos (esta es la que vamos a usar)
+   - Horarios
+   - Excepciones
+   - Cierres / Vacaciones
+   - Anuncios
+
+IMPORTANTE:
+-----------
+- Guarda esta dirección en tus favoritos para acceder rápido después
+- Si cierras sesión, siempre puedes volver a entrar con el mismo email y contraseña
+- La sesión dura 1 hora. Si no haces nada por 1 hora, se cierra automáticamente
+  (pero puedes volver a iniciar sesión cuando quieras)
+
+================================================================================
+PASO 3: CONFIGURAR HORARIOS DE TRABAJO (IMPORTANTE PRIMERO)
+================================================================================
+
+ANTES DE CARGAR TURNOS, DEBES CONFIGURAR TUS HORARIOS:
+-------------------------------------------------------
+Esto es importante porque el sistema necesita saber en qué horarios trabajas
+para validar que los turnos que cargas estén dentro de esos horarios.
+
+1. En el panel de administración, ve a la pestaña "Horarios"
+
+2. Configura cada día de la semana:
+
+   LUNES A VIERNES:
+   - Selecciona "Lunes" (o cualquier día de lunes a viernes)
+   - Hora de inicio: 09:00
+   - Hora de fin: 18:45
+   - Horario de almuerzo:
+     * Inicio: 12:45
+     * Fin: 14:15
+   - Click en "Guardar Cambios"
+   - Repite para Martes, Miércoles, Jueves y Viernes (o puedes configurar
+     uno y copiar el mismo horario para los demás)
+
+   SÁBADO:
+   - Selecciona "Sábado"
+   - Hora de inicio: 09:00
+   - Hora de fin: 13:00
+   - Horario de almuerzo: (puedes dejarlo vacío o poner el mismo)
+   - Click en "Guardar Cambios"
+
+   DOMINGO:
+   - No necesitas configurar nada, el sistema ya sabe que está cerrado
+
+3. Una vez configurados los horarios, vuelve a la pestaña "Turnos"
+
+NOTA:
+-----
+Si tienes días específicos con horarios diferentes (ej: un viernes trabajas
+hasta las 20:00), puedes configurarlo después usando "Excepciones". Por ahora
+solo configura los horarios regulares.
+
+================================================================================
+PASO 4: CARGAR TURNO POR TURNO DESDE EL CUADERNO
+================================================================================
+
+Ahora vamos a cargar cada turno del cuaderno a la plataforma.
+
+PARA CADA TURNO QUE TENGAS EN EL CUADERNO:
+-------------------------------------------
+
+1. En el panel de administración, asegúrate de estar en la pestaña "Turnos"
+
+2. Click en el botón verde "Crear Nueva Cita" (arriba a la derecha)
+
+3. Se abrirá un formulario. Completa cada campo:
+
+   a) ESPECIALISTA:
+      - Selecciona "Lorena Esquivel" (generalmente solo aparecerá esta opción)
+      - Si no aparece, selecciona la única opción disponible
+
+   b) SERVICIO:
+      - Busca en la lista el servicio que corresponde al turno del cuaderno
+      - Si no encuentras el servicio exacto, elige el más parecido:
+        * Limpieza Facial
+        * Cosmiatría
+        * Lifting Facial
+        * Drenaje Linfático
+        * Sonoterapia
+        * Fangoterapia
+        * Tratamientos Corporales
+        * Depilación Láser
+        * Podología
+        * Reflexología
+        * Masajes Descontracturantes / Relajantes
+        * Ventosas
+      - Si no estás segura del servicio, elige uno similar y luego puedes
+        editarlo después
+
+   c) PACIENTE:
+      - Si el cliente ya existe en el sistema:
+        * Escribe su nombre o email en el campo de búsqueda
+        * Si aparece, haz click en él
+      - Si es un cliente NUEVO (no existe en el sistema):
+        * Completa manualmente:
+          • Nombre completo: (anótalo tal como está en el cuaderno)
+          • Email: (si lo tienes en el cuaderno, anótalo; si no, déjalo vacío
+            o pon un email temporal como "sinemail@ejemplo.com")
+          • Teléfono: (si lo tienes en el cuaderno, anótalo; si no, déjalo vacío)
+
+      IMPORTANTE SOBRE EL EMAIL:
+      - Si no tienes el email del cliente, puedes usar un email temporal
+      - El sistema necesita un email para funcionar, pero puede ser algo como:
+        "cliente1@ejemplo.com", "cliente2@ejemplo.com", etc.
+      - O puedes usar: "sinemail@ejemplo.com" para todos los que no tengan email
+      - Más adelante, cuando tengas el email real, puedes editarlo
+
+   d) FECHA:
+      - Click en el campo de fecha
+      - Se abrirá un calendario
+      - Busca la fecha del turno (usando las flechas para cambiar de mes)
+      - Click en la fecha correcta
+      - IMPORTANTE: La fecha debe ser FUTURA o de HOY. No puedes cargar
+        turnos de fechas pasadas (si ya pasaron, el sistema no te dejará)
+
+   e) HORA:
+      - Una vez seleccionada la fecha, aparecerán los horarios disponibles
+      - Busca la hora que corresponde al turno del cuaderno
+      - Si la hora exacta no aparece disponible, puede ser porque:
+        * Ya está ocupada por otro turno que cargaste antes
+        * Está dentro del horario de almuerzo (12:45 - 14:15)
+        * Está fuera del horario de trabajo configurado
+      - Si no encuentras la hora exacta:
+        * Elige la hora más cercana disponible
+        * O ajusta los horarios de trabajo en la pestaña "Horarios" si es
+          necesario
+
+   f) NOTAS (opcional):
+      - Si en el cuaderno tienes alguna nota especial sobre ese turno
+        (ej: "primera vez", "alergia a X", "trae estudios", etc.),
+        anótala aquí
+      - Si no hay notas, déjalo vacío
+
+4. Una vez completados todos los campos, click en "Crear Cita"
+
+5. El sistema mostrará un mensaje de confirmación si todo salió bien
+
+6. Si hay algún error, el sistema te dirá qué está mal. Lee el mensaje y
+   corrige el problema.
+
+7. Repite este proceso para cada turno del cuaderno
+
+EJEMPLO PRÁCTICO:
+-----------------
+Digamos que en tu cuaderno tienes:
+
+"María González - 15/03/2025 - 10:00 - Limpieza Facial - Tel: 341-1234567"
+
+Pasos:
+1. Click en "Crear Nueva Cita"
+2. Especialista: Lorena Esquivel
+3. Servicio: Limpieza Facial
+4. Paciente: 
+   - Como es nuevo, completar:
+     * Nombre: María González
+     * Email: (si no lo tienes, poner "sinemail@ejemplo.com")
+     * Teléfono: 341-1234567
+5. Fecha: 15 de marzo de 2025
+6. Hora: 10:00
+7. Notas: (vacío)
+8. Click en "Crear Cita"
+9. ¡Listo! El turno está cargado.
+
+================================================================================
+PASO 5: QUÉ HACER CUANDO FALTA INFORMACIÓN
+================================================================================
+
+SITUACIONES COMUNES Y CÓMO RESOLVERLAS:
+----------------------------------------
+
+1. NO TENGO EL EMAIL DEL CLIENTE:
+   - Usa un email temporal: "sinemail@ejemplo.com"
+   - O crea emails temporales únicos: "cliente1@ejemplo.com",
+     "cliente2@ejemplo.com", etc.
+   - Más adelante, cuando tengas el email real, puedes editarlo:
+     * Busca el turno en la lista
+     * Click en "Editar"
+     * Cambia el email
+     * Guarda los cambios
+
+2. NO TENGO EL TELÉFONO DEL CLIENTE:
+   - Déjalo vacío (el teléfono es opcional)
+   - O anota "Sin teléfono" si quieres tener registro de que lo buscaste
+
+3. NO RECUERDO EL SERVICIO EXACTO:
+   - Elige el servicio más parecido de la lista
+   - Puedes editarlo después si te acuerdas:
+     * Busca el turno
+     * Click en "Editar"
+     * Cambia el servicio
+     * Guarda los cambios
+
+4. EL HORARIO NO APARECE DISPONIBLE:
+   - Verifica que el horario esté dentro del horario de trabajo configurado
+   - Verifica que no esté en el horario de almuerzo (12:45 - 14:15)
+   - Si el turno del cuaderno está en un horario especial (ej: después de las
+     18:45), puedes:
+     * Cambiar el horario de fin en la pestaña "Horarios" para ese día
+     * O crear una "Excepción de Horario" para ese día específico
+     * O elegir el horario más cercano disponible y anotar en "Notas" la hora
+       real del cuaderno
+
+5. EL CLIENTE TIENE DOS TURNOS EL MISMO DÍA:
+   - Carga cada turno por separado
+   - El sistema permite múltiples turnos para el mismo cliente el mismo día
+
+6. EL TURNO ES DE UNA FECHA QUE YA PASÓ:
+   - Los turnos pasados NO se pueden cargar en el sistema
+   - Solo carga los turnos FUTUROS (a partir de hoy)
+   - Si quieres tener registro de turnos pasados, puedes anotarlos en otro
+     lugar o simplemente no cargarlos
+
+================================================================================
+PASO 6: VERIFICAR QUE LOS TURNOS SE CARGARON CORRECTAMENTE
+================================================================================
+
+DESPUÉS DE CARGAR VARIOS TURNOS:
+---------------------------------
+
+1. En la pestaña "Turnos", verás una lista con todos los turnos cargados
+
+2. Verifica que:
+   - Los nombres de los clientes estén correctos
+   - Las fechas sean las correctas
+   - Las horas sean las correctas
+   - Los servicios sean los correctos
+
+3. Si encuentras algún error:
+   - Click en "Editar" en el turno con error
+   - Corrige la información
+   - Click en "Guardar Cambios"
+
+4. Usa la vista de calendario para ver los turnos más visualmente:
+   - Click en "Vista Calendario" (arriba a la derecha)
+   - Navega por los meses con las flechas
+   - Verás los turnos marcados en el calendario
+   - Esto te ayuda a verificar que todos los turnos estén en las fechas correctas
+
+5. Usa los filtros para ver turnos específicos:
+   - Filtro por fecha: Selecciona un rango de fechas
+   - Búsqueda: Escribe el nombre del cliente para encontrarlo rápido
+
+================================================================================
+PASO 7: ORGANIZACIÓN RECOMENDADA PARA MIGRAR
+================================================================================
+
+ESTRATEGIA RECOMENDADA:
+-----------------------
+
+OPCIÓN A: POR PRIORIDAD (RECOMENDADO)
+--------------------------------------
+1. Primero carga los turnos de ESTA SEMANA (los más urgentes)
+2. Luego carga los turnos de ESTE MES
+3. Después los turnos de los PRÓXIMOS 2-3 MESES
+4. Por último, si quieres, los turnos más lejanos
+
+OPCIÓN B: POR DÍA
+------------------
+1. Empieza con HOY
+2. Luego MAÑANA
+3. Luego día por día hacia adelante
+
+OPCIÓN C: POR CLIENTE
+---------------------
+1. Agrupa los turnos por cliente
+2. Carga todos los turnos de un cliente primero
+3. Luego pasa al siguiente cliente
+
+CONSEJOS:
+---------
+- No es necesario hacerlo todo de una vez
+- Puedes hacer pausas y continuar después
+- Lo importante es que los turnos más cercanos estén cargados primero
+- Los turnos que faltan varios meses pueden esperar
+
+MARCA LOS TURNOS EN EL CUADERNO:
+----------------------------------
+Mientras vas cargando, marca en el cuaderno con un ✓ o una X los turnos que
+ya cargaste. Así sabrás cuáles faltan sin tener que revisar todo cada vez.
+
+================================================================================
+PASO 8: DESPUÉS DE MIGRAR TODOS LOS TURNOS
+================================================================================
+
+UNA VEZ QUE TERMINES DE CARGAR LOS TURNOS DEL CUADERNO:
+--------------------------------------------------------
+
+1. VERIFICA TODO:
+   - Revisa la lista de turnos en el sistema
+   - Compara con tu cuaderno para asegurarte de que no falte ninguno
+   - Verifica que las fechas y horas sean correctas
+
+2. DE AHORA EN ADELANTE:
+   - Todos los turnos NUEVOS se cargan directamente en la plataforma
+   - Ya no necesitas el cuaderno (aunque puedes usarlo como respaldo si quieres)
+   - Cuando un cliente llama para reservar, crea el turno en el sistema
+   - Cuando un cliente reserva por internet, el turno se crea automáticamente
+
+3. MANTÉN EL CUADERNO COMO RESPALDO (OPCIONAL):
+   - Puedes seguir anotando en el cuaderno si te da más seguridad
+   - Pero lo importante es que todo esté en la plataforma
+   - El cuaderno puede servirte como respaldo por unos meses hasta que
+     te acostumbres a usar solo la plataforma
+
+4. ACTUALIZA LOS DATOS FALTANTES:
+   - Cuando tengas oportunidad, actualiza los emails temporales con los reales
+   - Completa los teléfonos que faltaban
+   - Corrige cualquier información incorrecta
+
+================================================================================
+PASO 9: CÓMO CREAR TURNOS NUEVOS (DESPUÉS DE LA MIGRACIÓN)
+================================================================================
+
+Cuando un cliente llama para reservar un turno:
+
+1. Accede al panel de administración (igual que antes)
+
+2. Click en "Crear Nueva Cita"
+
+3. Completa el formulario:
+   - Especialista: Lorena Esquivel
+   - Servicio: El que el cliente pidió
+   - Paciente: 
+     * Si es un cliente que ya existe, búscalo por nombre
+     * Si es nuevo, completa sus datos
+   - Fecha: La que el cliente eligió
+   - Hora: La que el cliente eligió (o la que tienes disponible)
+   - Notas: Cualquier información importante
+
+4. Click en "Crear Cita"
+
+5. ¡Listo! El turno está agendado.
+
+VENTAJAS DE USAR LA PLATAFORMA:
+--------------------------------
+- Los clientes pueden reservar por internet las 24 horas
+- Tú puedes ver todos los turnos organizados en un calendario
+- El sistema te avisa si hay conflictos de horarios
+- Puedes ver estadísticas de cuántos turnos tienes
+- Los clientes reciben confirmación automática por email
+- Puedes generar comprobantes PDF
+
+================================================================================
+PASO 10: SOLUCIÓN DE PROBLEMAS DURANTE LA MIGRACIÓN
+================================================================================
+
+PROBLEMA: No puedo iniciar sesión
+----------------------------------
+- Verifica que el email sea: lore.estetica76@gmail.com
+- Verifica que la contraseña sea correcta
+- Asegúrate de estar en la dirección correcta:
+  https://estetica-integral.vercel.app/admin/login
+- Si sigue sin funcionar, contacta al desarrollador
+
+PROBLEMA: No aparece el botón "Crear Nueva Cita"
+-------------------------------------------------
+- Asegúrate de estar en la pestaña "Turnos" (no en otra pestaña)
+- Recarga la página (F5 o Ctrl+R)
+- Si sigue sin aparecer, contacta al desarrollador
+
+PROBLEMA: El servicio que necesito no está en la lista
+-------------------------------------------------------
+- Elige el servicio más parecido
+- O contacta al desarrollador para agregar el servicio que falta
+
+PROBLEMA: No puedo seleccionar la fecha que necesito
+-----------------------------------------------------
+- Verifica que la fecha sea FUTURA (no pasada)
+- Verifica que la fecha no sea domingo (cerrado)
+- Si la fecha está cerrada por vacaciones, primero debes quitar el cierre
+  en la pestaña "Cierres / Vacaciones"
+
+PROBLEMA: No aparece la hora que necesito
+------------------------------------------
+- Verifica que el horario esté dentro del horario de trabajo configurado
+- Verifica que no esté en el horario de almuerzo (12:45 - 14:15)
+- Si el turno está fuera del horario regular, configura una "Excepción de
+  Horario" para ese día específico
+- O elige la hora más cercana disponible y anota la hora real en "Notas"
+
+PROBLEMA: El sistema dice "horario ocupado"
+-------------------------------------------
+- Ese horario ya está ocupado por otro turno
+- Elige otro horario disponible
+- O busca el turno que está ocupando ese horario y edítalo si es necesario
+
+PROBLEMA: Me equivoqué al cargar un turno
+------------------------------------------
+- No te preocupes, puedes corregirlo:
+  * Busca el turno en la lista
+  * Click en "Editar"
+  * Corrige la información
+  * Click en "Guardar Cambios"
+
+PROBLEMA: Cargué un turno dos veces por error
+---------------------------------------------
+- Busca uno de los turnos duplicados
+- Click en "Eliminar"
+- Confirma la eliminación
+- Solo quedará el turno correcto
+
+================================================================================
+PASO 11: PREGUNTAS FRECUENTES
+================================================================================
+
+P: ¿Cuánto tiempo me lleva cargar cada turno?
+R: Aproximadamente 1-2 minutos por turno una vez que te acostumbres.
+
+P: ¿Puedo cargar turnos de fechas pasadas?
+R: No, el sistema solo permite turnos de fechas futuras o de hoy.
+
+P: ¿Qué pasa si no tengo el email del cliente?
+R: Usa un email temporal como "sinemail@ejemplo.com" y luego lo actualizas.
+
+P: ¿Puedo cargar turnos fuera del horario de trabajo?
+R: Sí, pero primero debes configurar una "Excepción de Horario" para ese día.
+
+P: ¿Los turnos del cuaderno se eliminan automáticamente?
+R: No, el cuaderno sigue igual. Tú decides si seguirlo usando o no.
+
+P: ¿Qué pasa si me olvido de cargar un turno?
+R: Puedes cargarlo cuando te acuerdes, siempre que la fecha sea futura.
+
+P: ¿Puedo ver todos los turnos en un calendario?
+R: Sí, en la pestaña "Turnos" hay un botón "Vista Calendario" que muestra
+   todos los turnos en formato calendario.
+
+P: ¿Qué hago si un cliente cancela después de cargarlo?
+R: Busca el turno, haz click en "Cancelar". El horario quedará disponible.
+
+P: ¿Puedo imprimir o exportar la lista de turnos?
+R: Por ahora puedes ver la lista en pantalla. La funcionalidad de exportar
+   a Excel está en desarrollo.
+
+P: ¿Los clientes pueden ver sus turnos en la plataforma?
+R: No, los clientes solo pueden reservar nuevos turnos. Para ver turnos
+   existentes, deben contactarte a ti.
+
+================================================================================
+RESUMEN RÁPIDO: PASOS PARA MIGRAR UN TURNO
+================================================================================
+
+1. Abre el panel: https://estetica-integral.vercel.app/admin/login
+2. Inicia sesión con tu email y contraseña
+3. Ve a la pestaña "Turnos"
+4. Click en "Crear Nueva Cita"
+5. Completa:
+   - Especialista: Lorena Esquivel
+   - Servicio: El del cuaderno
+   - Paciente: Nombre, email (o temporal), teléfono (si lo tienes)
+   - Fecha: La del cuaderno
+   - Hora: La del cuaderno (o la más cercana disponible)
+   - Notas: (opcional)
+6. Click en "Crear Cita"
+7. Marca el turno en el cuaderno como cargado ✓
+8. Repite para el siguiente turno
+
+================================================================================
+CONTACTO Y AYUDA
+================================================================================
+
+Si tienes problemas durante la migración:
+- Contacta al desarrollador del sistema
+- O revisa el "INSTRUCTIVO-COMPLETO-LORENA.txt" para más detalles sobre
+  todas las funcionalidades
+
+Recuerda:
+- No te apures, puedes hacerlo en varias sesiones
+- Empieza con los turnos más cercanos (esta semana)
+- Si te equivocas, siempre puedes editar o eliminar un turno
+- Una vez que termines, será mucho más fácil usar solo la plataforma
+
+================================================================================
+FIN DEL INSTRUCTIVO DE MIGRACIÓN
+================================================================================
+
+¡Buena suerte con la migración! Una vez que termines, tendrás todos tus turnos
+organizados en la plataforma y será mucho más fácil gestionarlos.
+
+Última actualización: Enero 2025
+

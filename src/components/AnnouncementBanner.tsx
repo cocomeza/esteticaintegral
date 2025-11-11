@@ -11,6 +11,13 @@ interface Announcement {
   block_bookings: boolean
   start_date?: string
   end_date?: string
+  created_at?: string
+  updated_at?: string
+}
+
+const getDismissalKey = (announcement: Announcement) => {
+  const timestamp = announcement.updated_at || announcement.created_at || ''
+  return `${announcement.id}:${timestamp}`
 }
 
 export default function AnnouncementBanner() {
@@ -21,9 +28,16 @@ export default function AnnouncementBanner() {
   useEffect(() => {
     fetchAnnouncements()
     // Recuperar anuncios descartados del localStorage
-    const dismissedIds = localStorage.getItem('dismissedAnnouncements')
-    if (dismissedIds) {
-      setDismissed(JSON.parse(dismissedIds))
+    const storedDismissed = localStorage.getItem('dismissedAnnouncements')
+    if (storedDismissed) {
+      try {
+        const parsed = JSON.parse(storedDismissed)
+        if (Array.isArray(parsed)) {
+          setDismissed(parsed.filter((item) => typeof item === 'string'))
+        }
+      } catch (error) {
+        console.error('Error parsing dismissed announcements from storage:', error)
+      }
     }
   }, [])
 
@@ -41,10 +55,17 @@ export default function AnnouncementBanner() {
     }
   }
 
-  const handleDismiss = (id: string) => {
-    const newDismissed = [...dismissed, id]
-    setDismissed(newDismissed)
-    localStorage.setItem('dismissedAnnouncements', JSON.stringify(newDismissed))
+  const handleDismiss = (announcement: Announcement) => {
+    const dismissalKey = getDismissalKey(announcement)
+    const legacyKey = announcement.id
+
+    const keysToStore = new Set(dismissed)
+    keysToStore.add(dismissalKey)
+    keysToStore.add(legacyKey)
+
+    const updatedDismissed = Array.from(keysToStore)
+    setDismissed(updatedDismissed)
+    localStorage.setItem('dismissedAnnouncements', JSON.stringify(updatedDismissed))
   }
 
   const getIcon = (type: string) => {
@@ -100,9 +121,16 @@ export default function AnnouncementBanner() {
 
   if (loading) return null
 
-  const visibleAnnouncements = announcements.filter(
-    (announcement) => announcement.show_on_home && !dismissed.includes(announcement.id)
-  )
+  const visibleAnnouncements = announcements.filter((announcement) => {
+    if (!announcement.show_on_home) {
+      return false
+    }
+
+    const dismissalKey = getDismissalKey(announcement)
+    const legacyKey = announcement.id
+
+    return !dismissed.includes(dismissalKey) && !dismissed.includes(legacyKey)
+  })
 
   if (visibleAnnouncements.length === 0) return null
 
@@ -135,7 +163,7 @@ export default function AnnouncementBanner() {
               )}
             </div>
             <button
-              onClick={() => handleDismiss(announcement.id)}
+              onClick={() => handleDismiss(announcement)}
               className="ml-3 flex-shrink-0 opacity-50 hover:opacity-100 transition-opacity"
               aria-label="Cerrar anuncio"
             >

@@ -1,0 +1,754 @@
+================================================================================
+INSTRUCTIVO COMPLETO - PLATAFORMA WEB DE GESTIÓN DE TURNOS
+ESTÉTICA INTEGRAL - LORENA ESQUIVEL
+================================================================================
+
+Este instructivo explica paso a paso cómo usar la plataforma web tanto como
+administradora (Lorena) como para los clientes que reservan turnos.
+
+================================================================================
+PARTE 1: CÓMO LOS CLIENTES RESERVAN TURNOS
+================================================================================
+
+Los clientes pueden reservar turnos las 24 horas del día desde la página web.
+
+PASO 1: ACCEDER AL SITIO WEB
+-----------------------------
+Los clientes deben ingresar a:
+https://estetica-integral.vercel.app
+
+PASO 2: SELECCIONAR EL SERVICIO
+-------------------------------
+El cliente verá una lista de servicios organizados por categorías:
+
+TRATAMIENTOS FACIALES (45 minutos):
+- Limpieza Facial
+- Cosmiatría
+- Lifting Facial
+
+TRATAMIENTOS CORPORALES (45 minutos):
+- Drenaje Linfático
+- Sonoterapia
+- Fangoterapia
+- Tratamientos Corporales
+
+DEPILACIÓN (20 minutos):
+- Depilación Láser
+
+TERAPIAS (45 minutos):
+- Podología
+- Reflexología
+- Masajes Descontracturantes / Relajantes
+- Ventosas
+
+El cliente debe hacer click en el servicio que desea reservar.
+
+PASO 3: ELEGIR FECHA
+--------------------
+1. Aparecerá un calendario
+2. El cliente debe seleccionar una fecha
+   - Solo se pueden seleccionar fechas futuras (no pasadas)
+   - Los domingos aparecen deshabilitados (no hay atención)
+   - Las fechas cerradas (vacaciones) no están disponibles
+3. Al hacer click en una fecha, automáticamente aparecerán los horarios disponibles
+
+PASO 4: ELEGIR HORARIO
+----------------------
+Una vez seleccionada la fecha, aparecerán los horarios disponibles:
+- El sistema muestra solo los horarios que realmente están libres
+- Los horarios de almuerzo (12:45 a 14:15) NO aparecen como disponibles
+- El cliente hace click en el horario que prefiere
+
+HORARIOS DE ATENCIÓN:
+- Lunes a Viernes: 09:00 a 18:45 (almuerzo de 12:45 a 14:15)
+- Sábados: 09:00 a 13:00
+- Domingos: Cerrado (no aparece en el calendario)
+
+PASO 5: COMPLETAR DATOS PERSONALES
+------------------------------------
+El cliente debe completar:
+- Nombre completo (OBLIGATORIO)
+- Email (OBLIGATORIO - para recibir confirmación)
+- Teléfono (OPCIONAL - puede dejarlo vacío)
+
+PASO 6: REVISAR Y CONFIRMAR
+----------------------------
+1. El cliente verá un resumen con toda la información:
+   - Servicio seleccionado
+   - Fecha y hora
+   - Sus datos personales
+2. Debe hacer click en "Confirmar Reserva"
+3. El sistema validará que:
+   - El horario aún esté disponible
+   - La fecha no esté cerrada
+   - Los datos estén completos
+
+PASO 7: CONFIRMACIÓN Y COMPROBANTE
+-----------------------------------
+Una vez confirmado el turno:
+1. Aparece un mensaje de confirmación en pantalla
+2. El cliente puede descargar inmediatamente un comprobante en PDF
+3. Recibirá un email con los detalles del turno (si está configurado)
+
+IMPORTANTE PARA LOS CLIENTES:
+- El sistema previene que dos personas reserven el mismo horario
+- Si alguien reserva un horario justo antes que otro cliente, ese horario
+  desaparece y no se puede seleccionar
+- Los turnos se crean automáticamente en el sistema
+- Si un cliente ya existe (mismo email), sus datos se actualizan automáticamente
+
+================================================================================
+PARTE 2: PANEL DE ADMINISTRACIÓN (PARA LORENA)
+================================================================================
+
+ACCESO AL PANEL DE ADMINISTRACIÓN
+----------------------------------
+1. Ir a: https://estetica-integral.vercel.app/admin/login
+2. Ingresar las credenciales:
+   Email: lore.estetica76@gmail.com
+   Contraseña: (la contraseña configurada)
+3. Hacer click en "Iniciar Sesión"
+
+IMPORTANTE SOBRE LA SESIÓN:
+- La sesión dura 1 hora de actividad
+- Si no usas el panel por 1 hora, se cierra automáticamente
+- Si sigues usando el panel, la sesión se renueva automáticamente
+- Después de 7 días debes hacer login nuevamente
+
+================================================================================
+SECCIÓN 1: GESTIÓN DE TURNOS
+================================================================================
+
+VER TURNOS
+----------
+Al entrar al panel, la primera pestaña es "Turnos". Aquí verás:
+
+1. ESTADÍSTICAS (arriba de la página):
+   - Total de Citas: Todas las citas históricas
+   - Hoy: Citas agendadas para hoy
+   - Programadas: Citas futuras confirmadas
+   - Completadas: Citas ya realizadas
+
+2. DOS VISTAS DISPONIBLES:
+   a) VISTA LISTA (por defecto):
+      - Tabla completa con todas las citas
+      - Columnas: Fecha, Hora, Paciente, Servicio, Estado
+      - Puedes ver todos los detalles de cada turno
+   
+   b) VISTA CALENDARIO:
+      - Click en "Vista Calendario" (arriba a la derecha)
+      - Navega por meses con las flechas ← →
+      - Las citas aparecen codificadas por color:
+        * Rosa = Programada
+        * Verde = Completada
+        * Roja = Cancelada
+      - Click en cualquier día para ver las citas de ese día
+
+3. FILTROS Y BÚSQUEDA:
+   - Búsqueda rápida: Busca por nombre del paciente, email o teléfono
+   - Filtro por Estado: Todos / Programadas / Completadas / Canceladas
+   - Vista: Activas (últimos 3 meses) / Historial / Todas
+   - Período: Hoy / Semana / Mes / Trimestre / Personalizado
+
+CREAR NUEVA CITA
+----------------
+1. Click en el botón verde "Crear Nueva Cita"
+2. Se abrirá un formulario. Completar:
+   a) ESPECIALISTA:
+      - Seleccionar de la lista (generalmente solo aparecerá "Lorena Esquivel")
+   
+   b) SERVICIO:
+      - Seleccionar el servicio que el cliente necesita
+      - Aparecen todos los servicios disponibles
+   
+   c) PACIENTE:
+      - Si el paciente ya existe: Buscar por nombre o email
+      - Si es un paciente nuevo: Completar manualmente:
+        * Nombre completo
+        * Email
+        * Teléfono (opcional)
+   
+   d) FECHA:
+      - Click en el campo de fecha
+      - Seleccionar una fecha del calendario
+      - NO se pueden seleccionar fechas pasadas
+      - NO se pueden seleccionar fechas cerradas (vacaciones)
+   
+   e) HORA:
+      - Una vez seleccionada la fecha, aparecerán los horarios disponibles
+      - Seleccionar el horario deseado
+      - Solo muestra horarios realmente disponibles
+   
+   f) NOTAS (opcional):
+      - Agregar cualquier información adicional sobre la cita
+   
+3. Click en "Crear Cita"
+4. El sistema validará:
+   - Que la fecha no esté cerrada
+   - Que el horario esté disponible
+   - Que no haya conflicto con otra cita
+   - Si hay algún problema, mostrará un mensaje de error
+
+EDITAR CITA EXISTENTE
+---------------------
+1. Buscar la cita en la lista o calendario
+2. Hacer click en el botón "Editar" (icono de lápiz)
+3. Se abrirá el mismo formulario con los datos cargados
+4. Modificar los campos necesarios:
+   - Puedes cambiar: servicio, paciente, fecha, hora, notas
+5. Click en "Guardar Cambios"
+6. IMPORTANTE: Al cambiar la fecha u hora, el horario anterior queda
+   automáticamente disponible para otros turnos
+
+CAMBIAR ESTADO DE UNA CITA
+---------------------------
+Cada cita puede tener tres estados:
+
+1. PROGRAMADA (estado inicial):
+   - La cita está confirmada y esperando ser realizada
+
+2. COMPLETADA:
+   - Marcar como completada cuando el paciente asistió
+   - Click en el botón "Completar" (icono de check verde)
+   - La cita se mueve al historial
+
+3. CANCELADA:
+   - Marcar como cancelada si el paciente no asistió o canceló
+   - Click en el botón "Cancelar" (icono de X rojo)
+   - El horario queda disponible automáticamente
+
+4. REACTIVAR:
+   - Si una cita está cancelada, puedes reactivarla
+   - Click en "Reactivar" para volver a programarla
+
+ELIMINAR CITA
+-------------
+1. Buscar la cita en la lista
+2. Hacer click en "Eliminar" (icono de basura)
+3. Aparecerá una confirmación
+4. Confirmar la eliminación
+5. ⚠️ ADVERTENCIA: Esta acción NO se puede deshacer
+
+================================================================================
+SECCIÓN 2: GESTIÓN DE HORARIOS REGULARES
+================================================================================
+
+Los horarios regulares son los horarios de trabajo que se repiten cada semana
+(por ejemplo: Lunes a Viernes de 9:00 a 18:45).
+
+CONFIGURAR HORARIOS DE TRABAJO
+-------------------------------
+1. Ir a la pestaña "Horarios"
+2. Seleccionar el día de la semana que quieres configurar:
+   - Lunes
+   - Martes
+   - Miércoles
+   - Jueves
+   - Viernes
+   - Sábado
+   - Domingo
+3. Completar los campos:
+   a) HORA DE INICIO:
+      - Ejemplo: 09:00
+   
+   b) HORA DE FIN:
+      - Ejemplo: 18:45
+   
+   c) HORARIO DE ALMUERZO (opcional pero recomendado):
+      - Hora de inicio del almuerzo: 12:45
+      - Hora de fin del almuerzo: 14:15
+      - Durante este horario NO se pueden reservar turnos
+   
+   d) SERVICIOS PERMITIDOS (opcional):
+      - Si no seleccionas ninguno = TODOS los servicios están permitidos
+      - Si seleccionas servicios específicos = SOLO esos servicios se pueden
+        reservar ese día
+      - Ejemplo: En sábados puedes seleccionar solo "Depilación Láser"
+   
+4. Click en "Guardar Cambios"
+
+EJEMPLO DE CONFIGURACIÓN TÍPICA:
+- Lunes a Viernes: 09:00 - 18:45 (almuerzo 12:45 - 14:15, todos los servicios)
+- Sábados: 09:00 - 13:00 (sin almuerzo, solo Depilación Láser)
+- Domingos: Sin horario (cerrado)
+
+VALIDACIÓN DE CONFLICTOS AL CAMBIAR HORARIOS
+--------------------------------------------
+⚠️ IMPORTANTE: Antes de guardar cambios en los horarios, el sistema valida
+automáticamente si hay turnos ya reservados que entrarían en conflicto.
+
+Si hay conflictos:
+1. Aparecerá un mensaje de advertencia en color rojo o amarillo
+2. El mensaje mostrará:
+   - "CONFLICTO CON ALMUERZO" o "FUERA DE HORARIO"
+   - Lista de turnos afectados con:
+     * Nombre del paciente
+     * Fecha y hora del turno
+     * Servicio
+     * Tipo de conflicto
+3. Opciones:
+   - Puedes cancelar y ajustar los horarios
+   - O puedes guardar de todas formas (si estás segura de que quieres
+     hacerlo, pero los turnos afectados quedarán en un horario inválido)
+
+RECOMENDACIÓN:
+- Revisa los conflictos antes de guardar
+- Si hay muchos turnos afectados, considera reprogramar esos turnos primero
+- O ajusta los horarios para que no entren en conflicto
+
+================================================================================
+SECCIÓN 3: EXCEPCIONES DE HORARIO
+================================================================================
+
+Las excepciones de horario permiten cambiar el horario de trabajo para un día
+ESPECÍFICO sin afectar los horarios regulares.
+
+CUÁNDO USAR EXCEPCIONES:
+- Un día específico trabajas más tarde (ej: un viernes hasta las 20:00)
+- Un día específico trabajas menos horas (ej: un lunes solo hasta las 14:00)
+- Un día específico cambias el horario de almuerzo
+- Un día específico solo ofreces ciertos servicios
+
+CREAR EXCEPCIÓN DE HORARIO
+---------------------------
+1. Ir a la pestaña "Excepciones"
+2. Click en "Crear Nueva Excepción"
+3. Completar:
+   a) FECHA:
+      - Seleccionar la fecha específica para la excepción
+      - Ejemplo: 15 de marzo de 2025
+   
+   b) HORA DE INICIO:
+      - Ejemplo: 10:00 (si ese día empiezas más tarde)
+   
+   c) HORA DE FIN:
+      - Ejemplo: 19:00 (si ese día trabajas más tarde)
+   
+   d) HORARIO DE ALMUERZO:
+      - Puedes cambiar el horario de almuerzo solo para ese día
+      - Ejemplo: 13:00 - 14:30 (diferente al horario regular)
+   
+   e) SERVICIOS PERMITIDOS (opcional):
+      - Si no seleccionas ninguno = TODOS los servicios permitidos
+      - Si seleccionas específicos = SOLO esos servicios
+   
+4. Click en "Guardar"
+
+VALIDACIÓN DE CONFLICTOS
+------------------------
+Al igual que con los horarios regulares, el sistema valida si hay turnos ya
+reservados que entrarían en conflicto con la nueva excepción.
+
+Si hay conflictos:
+- Aparecerá un mensaje detallado con los turnos afectados
+- Puedes decidir si guardar de todas formas o cancelar
+
+EJEMPLOS DE USO:
+1. Viernes 20 de marzo: Trabajas hasta las 20:00
+   - Crear excepción para ese viernes con horario 09:00 - 20:00
+   - Los demás viernes siguen con el horario regular (09:00 - 18:45)
+
+2. Lunes 10 de marzo: Solo atiendes por la mañana
+   - Crear excepción para ese lunes con horario 09:00 - 13:00
+   - Los demás lunes siguen con el horario regular
+
+3. Martes 25 de marzo: Almuerzo más largo (13:00 - 15:00)
+   - Crear excepción para ese martes con almuerzo 13:00 - 15:00
+   - Los demás martes siguen con almuerzo 12:45 - 14:15
+
+EDITAR O ELIMINAR EXCEPCIÓN
+---------------------------
+1. En la lista de excepciones, buscar la que quieres modificar
+2. Click en "Editar" para modificar
+3. O click en "Eliminar" para borrarla
+4. Al eliminar una excepción, ese día vuelve a usar el horario regular
+
+================================================================================
+SECCIÓN 4: CIERRES Y VACACIONES
+================================================================================
+
+Los cierres permiten cerrar el centro por períodos específicos (vacaciones,
+feriados, mantenimiento, etc.). Durante esos períodos, los clientes NO pueden
+reservar turnos.
+
+CREAR CIERRE (VACACIONES, FERIADOS, ETC.)
+------------------------------------------
+1. Ir a la pestaña "Cierres / Vacaciones"
+2. Click en "Crear Nuevo Cierre"
+3. Completar:
+   a) TIPO DE CIERRE:
+      - Vacaciones
+      - Feriado
+      - Personal
+      - Mantenimiento
+      - Otro
+   
+   b) FECHA DESDE:
+      - Fecha de inicio del cierre
+      - Ejemplo: 20 de diciembre de 2025
+   
+   c) FECHA HASTA:
+      - Fecha de fin del cierre
+      - Ejemplo: 5 de enero de 2026
+      - Puede ser el mismo día (cierre de un solo día)
+   
+   d) MOTIVO:
+      - Descripción que verán los clientes
+      - Ejemplo: "Vacaciones de verano"
+      - Este mensaje aparecerá cuando un cliente intente reservar en esas fechas
+   
+   e) ACTIVO:
+      - Debe estar marcado (✓) para que el cierre funcione
+      - Si lo desmarcas, el cierre se desactiva pero no se elimina
+   
+4. Click en "Guardar"
+
+EFECTOS DEL CIERRE:
+- Las fechas cerradas NO aparecen disponibles en el calendario de reservas
+- Si un cliente intenta reservar en esas fechas, verá el mensaje:
+  "No hay atención disponible: [motivo del cierre]"
+- Los turnos ya existentes en esas fechas NO se eliminan automáticamente
+  (debes cancelarlos manualmente si es necesario)
+
+EJEMPLOS DE USO:
+1. VACACIONES DE VERANO:
+   - Tipo: Vacaciones
+   - Desde: 20/12/2025
+   - Hasta: 05/01/2026
+   - Motivo: "Vacaciones de verano. Reabrimos el 6 de enero"
+
+2. FERIADO NACIONAL:
+   - Tipo: Feriado
+   - Desde: 25/05/2025
+   - Hasta: 25/05/2025 (mismo día)
+   - Motivo: "Feriado nacional - Día de la Revolución de Mayo"
+
+3. MANTENIMIENTO:
+   - Tipo: Mantenimiento
+   - Desde: 10/03/2025
+   - Hasta: 12/03/2025
+   - Motivo: "Mantenimiento del centro. Reabrimos el 13 de marzo"
+
+EDITAR O DESACTIVAR CIERRE
+---------------------------
+1. En la lista de cierres, buscar el que quieres modificar
+2. Click en "Editar" para modificar las fechas o motivo
+3. O desactivar el cierre:
+   - Desmarcar "Activo"
+   - El cierre se desactiva pero no se elimina
+   - Puedes reactivarlo después marcando "Activo" nuevamente
+
+ELIMINAR CIERRE
+---------------
+1. Buscar el cierre en la lista
+2. Click en "Eliminar"
+3. Confirmar la eliminación
+4. ⚠️ El cierre se borrará permanentemente
+
+IMPORTANTE:
+- Los cierres pueden superponerse (ej: un feriado dentro de un período de
+  vacaciones)
+- El sistema previene reservas durante CUALQUIER cierre activo
+- Revisa los cierres activos regularmente para asegurarte de que no haya
+  cierres viejos que ya no necesitas
+
+================================================================================
+SECCIÓN 5: GESTIÓN DE ANUNCIOS
+================================================================================
+
+Los anuncios permiten mostrar mensajes a los clientes en la página principal.
+Pueden ser informativos, de advertencia o incluso bloquear las reservas
+temporalmente.
+
+CREAR ANUNCIO
+-------------
+1. Ir a la pestaña "Anuncios"
+2. Click en "Crear Nuevo Anuncio"
+3. Completar:
+   a) MENSAJE:
+      - El texto que verán los clientes
+      - Ejemplo: "¡Nuevos tratamientos disponibles! Consultá por WhatsApp"
+      - Puede ser de varias líneas
+   
+   b) TIPO DE ANUNCIO:
+      - Info (azul): Mensajes informativos generales
+      - Advertencia (amarillo): Avisos importantes
+      - Error (rojo): Urgente o crítico
+      - El color ayuda a que el mensaje se destaque
+   
+   c) BLOQUEAR RESERVAS:
+      - Si lo marcas (✓): Los clientes NO podrán reservar turnos mientras
+        el anuncio esté activo
+      - Si no lo marcas: El anuncio solo muestra información, pero las
+        reservas siguen funcionando normalmente
+      - Útil para: mantenimiento, emergencias, cierres temporales
+   
+   d) FECHA DESDE (opcional):
+      - Si quieres que el anuncio aparezca desde una fecha específica
+      - Si no completas, aparece inmediatamente
+   
+   e) FECHA HASTA (opcional):
+      - Si quieres que el anuncio desaparezca en una fecha específica
+      - Si no completas, el anuncio permanece hasta que lo desactives
+   
+   f) ACTIVO:
+      - Debe estar marcado (✓) para que el anuncio se muestre
+      - Si lo desmarcas, el anuncio se oculta pero no se elimina
+   
+4. Click en "Guardar"
+
+DÓNDE APARECE EL ANUNCIO:
+- En la parte superior de la página principal
+- Los clientes lo verán antes de seleccionar un servicio
+- Si el anuncio bloquea reservas, los clientes verán un mensaje adicional
+  indicando que las reservas están temporalmente bloqueadas
+
+EJEMPLOS DE USO:
+1. ANUNCIO INFORMATIVO:
+   - Mensaje: "¡Nuevos horarios! Ahora atendemos hasta las 18:45"
+   - Tipo: Info
+   - Bloquear reservas: NO
+   - Activo: SÍ
+
+2. BLOQUEO TEMPORAL:
+   - Mensaje: "Mantenimiento del sistema. Las reservas estarán bloqueadas
+     hasta el lunes 15 de marzo"
+   - Tipo: Advertencia
+   - Bloquear reservas: SÍ
+   - Activo: SÍ
+   - Fecha hasta: 15/03/2025
+
+3. ANUNCIO DE VACACIONES:
+   - Mensaje: "Vacaciones del 20 de diciembre al 5 de enero. Reabrimos
+     el 6 de enero"
+   - Tipo: Info
+   - Bloquear reservas: SÍ (durante las vacaciones)
+   - Fecha desde: 20/12/2025
+   - Fecha hasta: 05/01/2026
+
+EDITAR O DESACTIVAR ANUNCIO
+----------------------------
+1. En la lista de anuncios, buscar el que quieres modificar
+2. Click en "Editar" para modificar el mensaje o configuración
+3. O desactivar el anuncio:
+   - Desmarcar "Activo"
+   - El anuncio se oculta pero no se elimina
+   - Puedes reactivarlo después marcando "Activo" nuevamente
+
+ELIMINAR ANUNCIO
+----------------
+1. Buscar el anuncio en la lista
+2. Click en "Eliminar"
+3. Confirmar la eliminación
+4. ⚠️ El anuncio se borrará permanentemente
+
+IMPORTANTE:
+- Puedes tener múltiples anuncios activos al mismo tiempo
+- Si un anuncio bloquea reservas, las reservas se bloquean independientemente
+  de si hay cierres o no
+- Los anuncios con fechas se ocultan automáticamente cuando pasa la fecha
+  "hasta" (pero siguen existiendo, solo se desactivan)
+
+================================================================================
+SECCIÓN 6: ESTADÍSTICAS Y REPORTES
+================================================================================
+
+DASHBOARD PRINCIPAL
+-------------------
+En la parte superior de la página de "Turnos" verás estadísticas en tiempo real:
+
+1. TOTAL DE CITAS:
+   - Todas las citas históricas (desde que comenzaste a usar el sistema)
+
+2. HOY:
+   - Citas agendadas para el día de hoy
+
+3. PROGRAMADAS:
+   - Citas futuras confirmadas (aún no realizadas)
+
+4. COMPLETADAS:
+   - Citas que ya fueron realizadas
+
+Estas estadísticas se actualizan automáticamente cada vez que cargas la página.
+
+USAR FILTROS PARA VER DATOS ESPECÍFICOS
+----------------------------------------
+1. FILTRO POR ESTADO:
+   - Todos: Muestra todas las citas
+   - Programadas: Solo citas futuras
+   - Completadas: Solo citas ya realizadas
+   - Canceladas: Solo citas canceladas
+
+2. FILTRO POR PERÍODO:
+   - Hoy: Solo citas de hoy
+   - Semana: Últimos 7 días
+   - Mes: Mes actual
+   - Trimestre: Últimos 3 meses
+   - Personalizado: Seleccionar rango de fechas específico
+
+3. VISTA:
+   - Activas: Solo citas de los últimos 3 meses (más recientes)
+   - Historial: Solo citas antiguas (más de 3 meses)
+   - Todas: Sin filtro de tiempo
+
+4. BÚSQUEDA:
+   - Buscar por nombre del paciente, email o teléfono
+   - Resultados instantáneos mientras escribes
+
+================================================================================
+SECCIÓN 7: CONSEJOS Y BUENAS PRÁCTICAS
+================================================================================
+
+PARA GESTIONAR TURNOS:
+----------------------
+1. Revisa el dashboard cada mañana para ver las citas del día
+2. Usa la vista de calendario para ver huecos libres fácilmente
+3. Marca las citas como "Completadas" después de atender al paciente
+4. Cancela las citas de pacientes que no asistieron para liberar horarios
+5. Si un paciente cancela, marca la cita como cancelada para que el horario
+   quede disponible
+
+PARA GESTIONAR HORARIOS:
+------------------------
+1. Configura los horarios regulares al inicio (una sola vez)
+2. Usa excepciones para días específicos que sean diferentes
+3. Revisa los conflictos antes de guardar cambios en horarios
+4. Si hay muchos turnos afectados, considera reprogramarlos primero
+5. Recuerda que el horario de almuerzo (12:45 - 14:15) es fijo por defecto,
+   pero puedes cambiarlo por día usando excepciones
+
+PARA GESTIONAR CIERRES:
+-----------------------
+1. Crea los cierres con anticipación (ej: vacaciones de verano en diciembre)
+2. Revisa los cierres activos regularmente para asegurarte de que no haya
+   cierres viejos
+3. Usa el tipo de cierre apropiado (vacaciones, feriado, etc.) para
+   organización
+4. El motivo del cierre es importante porque los clientes lo verán
+
+PARA GESTIONAR ANUNCIOS:
+------------------------
+1. Usa anuncios informativos para comunicar novedades a los clientes
+2. Usa el bloqueo de reservas solo cuando sea realmente necesario
+3. Configura fechas de inicio y fin para anuncios temporales
+4. Desactiva o elimina anuncios viejos que ya no necesitas
+
+GENERAL:
+--------
+1. Guarda cambios frecuentemente (no dejes el panel abierto sin guardar
+   cambios importantes)
+2. Si el sistema muestra un error, lee el mensaje completo para entender
+   qué pasó
+3. Si cambias horarios, siempre revisa los conflictos antes de guardar
+4. Mantén actualizadas las estadísticas revisando el dashboard regularmente
+
+================================================================================
+SECCIÓN 8: SOLUCIÓN DE PROBLEMAS COMUNES
+================================================================================
+
+PROBLEMA: No puedo iniciar sesión
+----------------------------------
+- Verifica que estés usando el email correcto: lore.estetica76@gmail.com
+- Verifica que la contraseña sea correcta
+- Si olvidaste la contraseña, contacta al desarrollador del sistema
+
+PROBLEMA: No puedo crear una cita en una fecha específica
+----------------------------------------------------------
+- Verifica que la fecha no esté cerrada (revisa "Cierres / Vacaciones")
+- Verifica que haya horarios disponibles ese día
+- Verifica que el horario regular esté configurado para ese día de la semana
+
+PROBLEMA: No aparecen horarios disponibles para una fecha
+----------------------------------------------------------
+- Verifica que el horario regular esté configurado para ese día
+- Verifica que no haya una excepción que limite los horarios
+- Verifica que no sea domingo (cerrado)
+- Verifica que el horario de almuerzo no esté bloqueando todo el día
+
+PROBLEMA: Un cliente no puede reservar un turno
+-----------------------------------------------
+- Verifica que no haya un anuncio bloqueando las reservas
+- Verifica que la fecha no esté cerrada
+- Verifica que haya horarios disponibles
+- Si el problema persiste, crea el turno manualmente desde el panel admin
+
+PROBLEMA: El sistema muestra un error al guardar cambios
+----------------------------------------------------------
+- Lee el mensaje de error completo
+- Verifica que todos los campos obligatorios estén completos
+- Verifica que no haya conflictos con turnos existentes
+- Si el problema persiste, recarga la página e intenta nuevamente
+
+PROBLEMA: No veo las estadísticas correctas
+--------------------------------------------
+- Recarga la página (F5 o Ctrl+R)
+- Verifica que los filtros no estén ocultando datos
+- Verifica que estés en la vista correcta (Activas / Historial / Todas)
+
+PROBLEMA: Un turno aparece en un horario incorrecto
+---------------------------------------------------
+- Verifica que los horarios regulares estén configurados correctamente
+- Verifica que no haya una excepción de horario afectando esa fecha
+- Edita el turno y ajusta la hora si es necesario
+
+================================================================================
+INFORMACIÓN TÉCNICA IMPORTANTE
+================================================================================
+
+HORARIOS DE ALMUERZO:
+---------------------
+El horario de almuerzo fijo está configurado en: 12:45 - 14:15
+- Durante este horario NO se pueden reservar turnos
+- Este horario se aplica a todos los días (lunes a viernes) a menos que:
+  * Creas una excepción de horario que cambie el almuerzo para un día específico
+  * O cambies el horario regular de almuerzo (pero esto afecta todos los días)
+
+DOMINGOS:
+---------
+Los domingos están completamente deshabilitados:
+- No aparecen en el calendario de reservas para clientes
+- No puedes crear turnos para domingos desde el panel admin
+- Esto es una configuración fija del sistema
+
+DURACIÓN DE TURNOS:
+-------------------
+- La mayoría de servicios duran 45 minutos
+- Depilación Láser dura 20 minutos
+- El sistema calcula automáticamente los horarios disponibles considerando
+  la duración del servicio
+
+VALIDACIONES AUTOMÁTICAS:
+--------------------------
+El sistema valida automáticamente:
+- Que no haya dos turnos en el mismo horario
+- Que los turnos no se solapen (considerando la duración)
+- Que las fechas no estén cerradas
+- Que los horarios estén dentro del horario de trabajo
+- Que los horarios no estén en el período de almuerzo
+- Que los servicios estén permitidos ese día
+
+================================================================================
+CONTACTO Y SOPORTE
+================================================================================
+
+Si tienes problemas técnicos o necesitas ayuda:
+- Contacta al desarrollador del sistema
+- O revisa la documentación técnica en el repositorio del proyecto
+
+INFORMACIÓN DEL CENTRO:
+-----------------------
+Estética Integral - Lorena Esquivel
+Email: lore.estetica76@gmail.com
+Teléfono: (verificar en el sistema)
+Dirección: (verificar en el sistema)
+
+================================================================================
+FIN DEL INSTRUCTIVO
+================================================================================
+
+Este instructivo cubre todas las funcionalidades principales de la plataforma.
+Si necesitas ayuda con algo específico que no está cubierto aquí, contacta
+al desarrollador del sistema.
+
+Última actualización: Enero 2025
+
